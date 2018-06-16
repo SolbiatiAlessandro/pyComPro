@@ -42,7 +42,7 @@ def main():
                        help='sum the integers (default: find the max)')
     """
     args = parser.parse_args()
-    f = open("./contest/"+str(args.contest_number) + "/"+str(args.problem_number)+"_solutions.html", "w")
+    f = open("./contest/"+str(args.contest_number) + "/"+str(args.problem_number)+".html", "w")
     init = "<style>.cflink{padding: 8px;box-shadow: 0px 0px 8px grey;background: aliceblue;line-height: 40px;}</style><p>This is a list of all the python AC submission from high-ranking users to <b>contest "+str(args.contest_number)+"</b> for the <b>problem "+str(args.problem_number)+"</p>"
 
     f.write(init)
