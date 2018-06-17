@@ -40,7 +40,7 @@ def main():
                         help=':number of the contest e.g. 988')
     parser.add_argument('problem_number', type=str,
                         help=':number of the problem e.g. A')
-    parser.add_argument('div', type=int, help=':1 (div1) or 2 (div2) contest')
+    parser.add_argument('div', type=int, help=':1 (div1) or 2 (div2 contest')
     """
     parser.
     add_argument('--sum', dest='accumulate', action='store_const',
