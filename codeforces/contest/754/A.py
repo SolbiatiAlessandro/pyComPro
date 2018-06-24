@@ -1,17 +1,8 @@
-R = lambda : list(map(int, input().split()))
-n,a,s = R(),R(),0
-for x in a:
-	s+=x
-if s:
-	print("YES\n1\n1 "+str(len(a)))
+n, a = int(input()), list(map(int, input().split()))
+x = next((i for i, ai in enumerate(a) if ai), None)
+if x is None:
+    print('NO')
+elif sum(a):
+    print('YES', 1, '1 {}'.format(n), sep='\n')
 else:
-	p,f=0,0
-	for i in range(len(a)):
-		p+=a[i]
-		if(p!=0 and not f):
-			print("YES\n2\n1 %d\n%d %d" % (i+1, i+2, len(a)))
-			f=1
-	if not f:
-		print("NO")  
-			
-
+    print('YES', 2, '1 {}'.format(x + 1), '{} {}'.format(x + 2, n), sep='\n')
