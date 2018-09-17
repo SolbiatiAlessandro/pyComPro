@@ -1,2 +1,4 @@
 .idea
+*.swp
+*.pyc
 */.DS_Store
