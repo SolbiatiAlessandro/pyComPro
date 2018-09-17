@@ -1,4 +1,8 @@
-This repo contains Competitive Programming (codeforces) tasks solved in Python.
+This repo contains Competitive Programming tasks solved in Python.
+
+---
+
+<h2> Codeforces </h2>
 
 I will focus on quality over quantity trying to find out nice 'tips and tricks' from high rate coders online solving the tasks.
 
@@ -12,3 +16,9 @@ A tool to automatically find from codeforces high-quality Python solution to tas
 cd codeforces
 python solution-finder.py (number of the contest, e.g. 988) (number of the problem, e.g A)
 ```
+
+---
+
+<h2> Leetcode </h2>
+
+This are my solutions to Leetcode Google interview preparation, this solution comes with unit test.
