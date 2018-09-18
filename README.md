@@ -21,4 +21,4 @@ python solution-finder.py (number of the contest, e.g. 988) (number of the probl
 
 <h2> Leetcode </h2>
 
-This are my solutions to Leetcode Google interview preparation, this solution comes with unit test.
+This are my solutions to Leetcode Google interview preparation, I am writing unit test for every solution since I follow TDD practices in order to increase my chances to get Accepted at first submission
