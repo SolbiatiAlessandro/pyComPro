@@ -3,7 +3,7 @@ import l341
 
 class testHelpers( unittest.TestCase ):
 
-    ##@unittest.skip("wait")
+    @unittest.skip("wait")
     def test_lsearch( self ):
 
         l = [(3,-1),(4,-1),(5,-1)]
@@ -27,7 +27,7 @@ class testHelpers( unittest.TestCase ):
         self.assertEqual( l341.lsearch( l, 7 ), 4 )
 
 
-    #@unittest.skip("wait")
+    @unittest.skip("wait")
     def test_query( self ):
 
         l = [(1,2),(2,1)]
@@ -65,7 +65,7 @@ class testHelpers( unittest.TestCase ):
         got = l341.query( l, end, 1, 3 )
         self.assertEqual( got, 1 )
 
-    #@unittest.skip("wait")
+    @unittest.skip("wait")
     def test_queryReverse( self ):
         l = [(3,0)]
         end = 0
@@ -77,7 +77,7 @@ class testSolution( unittest.TestCase ):
     def setUp( self ):
         self.s = l341.Solution()
 
-    #@unittest.skip("wait")
+    @unittest.skip("wait")
     def test_solution( self ):
         l = [0,1,0,2,1,0,1,3,2,1,2,1]
         got  =self.s.trap( l )
@@ -135,7 +135,7 @@ class testSolution( unittest.TestCase ):
         got  =self.s.trap( l[::-1] )
         self.assertEqual( got, 0 )
         
-    #@unittest.skip("wait")
+    @unittest.skip("wait")
     def test_breakingInverse( self ):
         l = [2,1,0,3]
         got  =self.s.trap( l[::-1] )
@@ -160,7 +160,7 @@ class testSolution( unittest.TestCase ):
         self.assertEqual( got, 4 )
         
 
-    #@unittest.skip("wait")
+    @unittest.skip("wait")
     def test_waterOnTop( self ):
 
         l = [5,3,1,0,5]
@@ -193,7 +193,7 @@ class testSolution( unittest.TestCase ):
         got  =self.s.trap( l[::-1] )
         self.assertEqual( got, 14)
 
-    #@unittest.skip("Wait")
+    @unittest.skip("Wait")
     def test_stillBreaking( self ):
 
         l = [4,2,0,3,2,5]
