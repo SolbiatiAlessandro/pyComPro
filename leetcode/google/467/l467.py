@@ -4,23 +4,6 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        stack = []
-        for c in s:
-            if c in set(['(','{','[']):
-                stack.append(c)
-            elif c == ')':
-                if len(stack)>0 and stack[-1] == '(':
-                    stack.pop()
-                else :
-                    return False
-            elif c == ']':
-                if len(stack)>0 and  stack[-1] == '[':
-                    stack.pop()
-                else :
-                    return False
-            elif c == '}':
-                if len(stack)>0 and  stack[-1] == '{':
-                    stack.pop()
-                else:
-                    return False
-        return not len(stack)
+        while '[]' in s or '()' in s or '{}' in s:
+            s = s.replace('[]','').replace('()','').replace('{}','')
+        return not len(s)
