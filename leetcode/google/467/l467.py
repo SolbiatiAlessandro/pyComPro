@@ -7,20 +7,20 @@ class Solution(object):
         stack = []
         for c in s:
             if c in set(['(','{','[']):
-                stack = stack + [c]
+                stack.append(c)
             elif c == ')':
                 if len(stack)>0 and stack[-1] == '(':
-                    stack = stack[:-1]
+                    stack.pop()
                 else :
                     return False
             elif c == ']':
                 if len(stack)>0 and  stack[-1] == '[':
-                    stack = stack[:-1]
+                    stack.pop()
                 else :
                     return False
             elif c == '}':
                 if len(stack)>0 and  stack[-1] == '{':
-                    stack = stack[:-1]
+                    stack.pop()
                 else:
                     return False
         return not len(stack)
