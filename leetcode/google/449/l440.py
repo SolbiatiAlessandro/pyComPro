@@ -5,8 +5,4 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[int]
         """
-        nums1,nums2,res = set(nums1),set(nums2),[]
-        for n in nums1:
-            if n in nums2:
-                res.append(n)
-        return res
+        return list( set.intersection( set(nums1), set(nums2) ) )
