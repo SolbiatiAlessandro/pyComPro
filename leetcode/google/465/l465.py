@@ -25,6 +25,7 @@ class Solution(object):
         """
         :type s: str
         :rtype: str
+        NOT PASSING TESTS
         """
         longestPalindrome = 1
         substring = s[0] if len(s)>0 else ""
