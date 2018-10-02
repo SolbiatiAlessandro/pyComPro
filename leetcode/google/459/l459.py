@@ -5,17 +5,17 @@ class Solution(object):
         :rtype: int
         """
         start = ord('a')
-        bitmaskAppear = [False]*30
-        bitmaskRepeat = [False]*30
-        for c in s:
+        bitmask = [-1]*30
+        for i,c in enumerate(s):
             index = ord(c)-start
-            if not bitmaskAppear[index]:
-                bitmaskAppear[index] = True
-            else:
-                bitmaskRepeat[index] = True
-        for i, c in enumerate(s):
-            index = ord(c)-start
-            if bitmaskAppear[index] and not bitmaskRepeat[index]:
-                return i
-        return -1
+            if bitmask[index] == -1:
+                bitmask[index] = i
+            elif bitmask[index] > -1:
+                bitmask[index] = -2
+        res = 1e9
+        for b in bitmask:
+            if b > -1:
+                res = min(res, b)
+        return res if res != 1e9 else -1
+
 
