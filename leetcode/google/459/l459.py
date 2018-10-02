@@ -4,14 +4,18 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        #import pdb;pdb.set_trace()
-        bitmask = [-1]*30
+        start = ord('a')
+        bitmaskAppear = [False]*30
+        bitmaskRepeat = [False]*30
         for c in s:
-            if not bitmask[ord(c)-ord('a')]:
-                bitmask[ord(c)-ord('a')] = 1
-            elif bitmask[ord(c)-ord('a')] == -1:
-                bitmask[ord(c)-ord('a')] = 0
-        for index, c in enumerate(s):
-            if not bitmask[ord(c)-ord('a')]:
-                return index
+            index = ord(c)-start
+            if not bitmaskAppear[index]:
+                bitmaskAppear[index] = True
+            else:
+                bitmaskRepeat[index] = True
+        for i, c in enumerate(s):
+            index = ord(c)-start
+            if bitmaskAppear[index] and not bitmaskRepeat[index]:
+                return i
         return -1
+
