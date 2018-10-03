@@ -8,25 +8,33 @@ def printList(l):
     """
     for debugging
     """
+    print ""
     curr = l
     while curr is not None:
         print curr.val
         curr = curr.next
 
-def getNextNode(lists):
+
+def mergeTwoList(l1, l2):
     """
-    given a list of linked lists, get next min node
-    and update counter
+    given two sorted lists l1 l2 return a
+    sorted merged list
     """
-    nodeRes, res, index = None, 1e9, -1
-    for i, l in enumerate(lists):
-        if l is not None and l.val < res:
-            res = l.val
-            nodeRes = l
-            index = i
-    if index != -1:
-        lists[index] = lists[index].next
-    return nodeRes
+    res = ListNode('*')
+    curr = res
+    while l1 is not None and l2 is not None:
+        if l1.val < l2.val:
+            curr.next = l1
+            l1 = l1.next
+        else:
+            curr.next = l2
+            l2 = l2.next
+        curr = curr.next
+    if l1 is None:
+        curr.next = l2
+    elif l2 is None:
+        curr.next = l1
+    return res.next
 
 
 class Solution(object):
@@ -35,13 +43,7 @@ class Solution(object):
         :type lists: List[ListNode]
         :rtype: ListNode
         """
-        nextVal = getNextNode(lists) 
-        res = nextVal
-
-        curr = nextVal
-        nextVal = getNextNode(lists) 
-        while nextVal != None:
-            curr.next = nextVal
-            curr = curr.next
-            nextVal = getNextNode(lists) 
+        res = None
+        for l in sorted(lists):
+            res = mergeTwoList(res, l)
         return res

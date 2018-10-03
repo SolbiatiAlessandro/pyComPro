@@ -8,7 +8,7 @@ class testSolution(unittest.TestCase):
     def setUp( self ):
         self.s = l342.Solution()
 
-    @unittest.skip("wait")
+    #@unittest.skip("wait")
     def test_nextval(self):
         
         l1 = ListNode(1)
@@ -32,23 +32,45 @@ class testSolution(unittest.TestCase):
         curr = curr.next
         curr.next = ListNode(4)
         curr = curr.next
-        curr.next = ListNode(4)
+        curr.next = ListNode(5)
         curr = curr.next
         curr.next = ListNode(5)
         curr = curr.next
         curr.next = ListNode(6)
         curr = curr.next
 
-        lists = [l1,l2,l3]
+        got = l342.mergeTwoList(l1,l2)
+        l342.printList(got)
 
-        got = l342.getNextVal(lists)
-        self.assertEqual(got,1)
+        got = l342.mergeTwoList(got,l3)
+        l342.printList(got)
 
-        got = l342.getNextVal(lists)
-        self.assertEqual(got,1)
+        curr1, curr2 = got, expected
+        while curr1 is not None and curr2 is not None:
+            self.assertEqual( curr1.val, curr2.val )
+            curr1 = curr1.next
+            curr2 = curr2.next
 
-        got = l342.getNextVal(lists)
-        self.assertEqual(got,2)
+        l1 = ListNode(1)
+        l1.next = ListNode(4)
+        l1.next.next = ListNode(5)
+
+        l2 = ListNode(1)
+        l2.next = ListNode(3)
+        l2.next.next = ListNode(5)
+
+        l3 = ListNode(2)
+        l3.next = ListNode(6)
+
+        got = l342.mergeTwoList( l1, None )
+        l342.printList(got)
+
+        got = l342.mergeTwoList( None, l2 )
+        l342.printList(got)
+
+        got = l342.mergeTwoList( None, None )
+        l342.printList(got)
+        self.assertIsNone(got)
 
 
     #@unittest.skip("Wait")
