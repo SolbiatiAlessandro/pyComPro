@@ -13,19 +13,20 @@ def printList(l):
         print curr.val
         curr = curr.next
 
-def getNextVal(lists):
+def getNextNode(lists):
     """
-    given a list of linked lists, get next min
-    value and update counter
+    given a list of linked lists, get next min node
+    and update counter
     """
-    res, index = 1e9, -1
+    nodeRes, res, index = None, 1e9, -1
     for i, l in enumerate(lists):
         if l is not None and l.val < res:
             res = l.val
+            nodeRes = l
             index = i
     if index != -1:
         lists[index] = lists[index].next
-    return res
+    return nodeRes
 
 
 class Solution(object):
@@ -34,15 +35,13 @@ class Solution(object):
         :type lists: List[ListNode]
         :rtype: ListNode
         """
-        nextVal = getNextVal(lists) 
-        if nextVal == 1e9:
-            return None
-        res = ListNode(nextVal)
+        nextVal = getNextNode(lists) 
+        res = nextVal
 
-        curr = res
-        nextVal = getNextVal(lists) 
-        while nextVal != 1e9:
-            curr.next = ListNode(nextVal)
+        curr = nextVal
+        nextVal = getNextNode(lists) 
+        while nextVal != None:
+            curr.next = nextVal
             curr = curr.next
-            nextVal = getNextVal(lists) 
+            nextVal = getNextNode(lists) 
         return res

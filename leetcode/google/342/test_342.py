@@ -8,6 +8,7 @@ class testSolution(unittest.TestCase):
     def setUp( self ):
         self.s = l342.Solution()
 
+    @unittest.skip("wait")
     def test_nextval(self):
         
         l1 = ListNode(1)
