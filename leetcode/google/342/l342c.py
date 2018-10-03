@@ -10,17 +10,13 @@ class Solution(object):
         :type lists: List[ListNode]
         :rtype: ListNode
         """
-        helper = {}
+        dt, res = {}, ListNode(0)
         for l in lists:
             while l is not None:
-                if helper.get(l.val) is None:
-                    helper[l.val] = 1
-                else:
-                    helper[l.val] += 1
+                dt[l.val] = 1 if dt.get(l.val) is None else dt[l.val]+1
                 l = l.next
-        res = ListNode(0)
         curr = res
-        for k, v in sorted(helper.items()):
+        for k, v in sorted(dt.items()):
             for i in xrange(v):
                 curr.next = ListNode(k)
                 curr = curr.next
