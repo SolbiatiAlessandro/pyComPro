@@ -44,6 +44,13 @@ class testSolution( unittest.TestCase ):
         got = self.s.inorderSuccessor(tree, tree.left)
         self.assertEqual(got, tree.left.right.left)
 
+        tree = TreeNode(2)
+        tree.left = TreeNode(1)
+
+        #import pdb;pdb.set_trace() 
+        got = self.s.inorderSuccessor(tree, tree)
+        self.assertEqual(got, None)
+
 
 
 if __name__ == "__main__":

@@ -12,20 +12,16 @@ class Solution(object):
         :type p: TreeNode
         :rtype: TreeNode
         """
-        visitedP = False
-        stack, curr = [], root
-        while True:
-            if curr:
-                stack.append(curr)
+        prev, curr = None, root
+        while curr.val != p.val:
+            if curr.val > p.val:
+                prev = curr
                 curr = curr.left
-            elif stack:
-                curr = stack.pop()
-                if visitedP:
-                    return curr
-                if curr.val == p.val:
-                    visitedP = True
-
-                curr = curr.right
             else:
-                return None
+                curr = curr.right
+        res, curr = None, curr.right
+        while curr:
+            res = curr
+            curr = curr.left
+        return res if res is not None else prev
 
