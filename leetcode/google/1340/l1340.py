@@ -6,11 +6,40 @@ class Tuple(tuple):
     def __add__(self, other):
         return Tuple(x+y for x, y in zip(self, other))
 
+    def __sub__(self, other):
+        return Tuple(x-y for x, y in zip(self, other))
 
-DIRECTIONS = [Tuple((0, 1)),
-              Tuple((1, 0)),
-              Tuple((0, -1)),
-              Tuple((-1, 0))]
+    def distance(self):
+        """compute metric distance for tuple representing
+        (x, y) on a cartesian grid"""
+        return abs(self[0])+abs(self[1])
+
+
+SEQ = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
+
+def move_to(robot, direction, start, end):
+    """move_to procedure to make the robot move
+    Args:
+        robot: Robot instance
+        direction: (0, 1) ..
+        start: (x,y)
+        end: (x,y), important |end - start| == 1
+    Returns:
+        new_directions, end
+    """
+    first, new_direction = SEQ.index(direction), end - start
+    second = SEQ.index(new_direction)
+    rotations = second - first if second > first else second + 4 - first
+    if rotations == 1:
+        robot.turnRight()
+    elif rotations == 2:
+        robot.turnRight(); robot.turnRight()
+    elif rotations == 3:
+        robot.turnLeft()
+    moved = robot.move()
+    return new_direction, end if moved else start
+
 
 class Solution(object):
     def cleanRoom(self, robot):
@@ -18,43 +47,22 @@ class Solution(object):
         :type robot: Robot
         :rtype: None
         """
-        orientation = 0
-        pos = Tuple((0, 0))
-        cnt = 0
-        stack, visited = [pos], set()
+        pos, direction = Tuple((0, 0)), Tuple((0, 1))
+        stack, visited, prev = [pos], set(), {}
         while stack:
+            node = stack.pop()
 
-            node = stack[-1]
+            # moves robot to node
+            while (pos - node).distance() > 1:
+                direction, pos = move_to(robot, direction, pos, prev[pos])
+            if (pos - node).distance() == 1:
+                direction, pos = move_to(robot, direction, pos, node)
 
-            if pos != node:
-                while pos + DIRECTIONS[orientation] != node:
-                    orientation = (orientation + 1) % 4
-                    robot.turnRight()
-                robot.move()
-                pos = node
-
+            # clean and get adj
             robot.clean()
-            visited.add(pos)
-
-            cnt, next_node = 0, None
-            for _ in xrange(4):
-                elem = pos + DIRECTIONS[orientation]
-                if elem in visited:
-                    cnt += 1
-                    orientation = (orientation + 1) % 4
-                    robot.turnRight()
-                else:
-                    if robot.move() == 0:
-                        visited.add(elem)
-                        cnt += 1
-                        orientation = (orientation + 1) % 4
-                        robot.turnRight()
-                    else:
-                        pos = elem
-                        next_node = elem
-                        break
-
-            if cnt == 4:
-                stack.pop()
-            else:
-                stack.append(next_node)
+            visited.add(node)
+            for adj in [Tuple((pos[0], pos[1]+1)), Tuple((pos[0], pos[1]-1)),
+                        Tuple((pos[0]+1, pos[1])), Tuple((pos[0]-1, pos[1]))]:
+                if adj not in visited:
+                    stack.append(adj)
+                    prev[adj] = pos
