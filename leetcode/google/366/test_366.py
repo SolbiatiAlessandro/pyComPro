@@ -40,33 +40,28 @@ class testSolution(unittest.TestCase):
         expected = [2, 3]
         got = self.s.findRedundantDirectedConnection(test_input)
         self.assertEqual(got, expected)
-        clean()
 
         #import pdb;pdb.set_trace()
         test_input = [[1, 2], [2, 3], [3, 4], [4, 1], [1, 5]]
         expected = [4, 1]
         got = self.s.findRedundantDirectedConnection(test_input)
         self.assertEqual(got, expected)
-        clean()
 
         #import pdb;pdb.set_trace()
         test_input = [[2, 3], [3, 4], [4, 1], [1, 5], [1, 2]]
         expected = [1, 2]
         got = self.s.findRedundantDirectedConnection(test_input)
         self.assertEqual(got, expected)
-        clean()
 
         test_input = [[1, 2], [2, 3], [3, 4], [3, 3], [1, 5]]
         expected = [3, 3]
         got = self.s.findRedundantDirectedConnection(test_input)
         self.assertEqual(got, expected)
-        clean()
 
         test_input = [[2, 1], [3, 1], [4, 2], [4, 5], [1, 4]]
         expected = [2, 1]
         got = self.s.findRedundantDirectedConnection(test_input)
         self.assertEqual(got, expected)
-        clean()
 
         print "okk"
 

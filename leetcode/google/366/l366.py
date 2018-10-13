@@ -5,6 +5,14 @@ COLOR = {}
 CHILDREN = {}
 PARENT = {}
 
+def clean():
+    """clean globals"""
+    global CHILDREN
+    global COLOR
+    global PARENT
+    CHILDREN = {}
+    COLOR = {}
+    PARENT = {}
 
 def dfs(vertex, highest_index):
     """dfs to check for cycles
@@ -49,7 +57,7 @@ class Solution(object):
         :type edges: List[List[int]]
         :rtype: List[int]
         """
-        second, first = None, None  # candidate edges to remove
+        second, first, res = None, None, None  # candidate edges to remove
         for index, edge in enumerate(edges):
             if edge[1] not in PARENT:  # add edge to PARENT dict
                 PARENT[edge[1]] = edge[0]
@@ -66,7 +74,10 @@ class Solution(object):
                 if child[0] == first[1]:
                     del CHILDREN[second[0]][index]
             if last_edge_in_cycle():  # if there is cycle
-                return first
-            return second
+                res = first
+            else:
+                res = second
         else:
-            return edges[last_edge_in_cycle()]  # there must be one cycle
+            res = edges[last_edge_in_cycle()]  # there must be one cycle
+        clean()
+        return res
