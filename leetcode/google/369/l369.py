@@ -1,3 +1,23 @@
+colors, children = {}, {}
+
+def clean():
+    global colors
+    global children
+    global dfs_parent
+    colors, children = {}, {}
+
+def dfs(vertex):
+    colors[vertex] = 0
+    _children = children.get(vertex)
+    if _children:
+        for child in _children:
+            if colors.get(child) == 0:
+                return False
+            if not dfs(child):
+                return False
+    colors[vertex] = 1
+    return True
+
 class Solution(object):
     def canFinish(self, numCourses, prerequisites):
         """
@@ -5,7 +25,7 @@ class Solution(object):
         :type prerequisites: List[List[int]]
         :rtype: bool
         """
-        colors, children = {}, {}
+        res = None
         for edge in prerequisites:  # build adj list
             parent, child = edge[0], edge[1]
             if parent not in children:
@@ -13,20 +33,11 @@ class Solution(object):
             else:
                 children[parent].append(child)
 
-        print children
-
-        for vertex, _ in children.items():  # run dfs
+        #import pdb;pdb.set_trace()
+        for vertex, _ in children.items():
             if vertex not in colors:
-                stack = [vertex]
-                while stack:
-                    parent = stack.pop()
-                    colors[parent] = 0
-                    _children = children.get(parent)
-                    if _children:
-                        for child in _children:
-                            if colors.get(child) == 0:  # found loop
-                                return False
-                                #TODO fix: not detecting A->B B->A
-                            stack.append(child)
-                    colors[parent] = 1
+                if not dfs(vertex):
+                    clean()
+                    return False
+        clean()
         return True
