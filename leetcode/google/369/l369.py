@@ -1,20 +1,17 @@
-colors, children = {}, {}
+colors, children = [], []
 
-def clean():
+def init(numCourses):
     global colors
     global children
-    global dfs_parent
-    colors, children = {}, {}
+    colors, children = [None]*numCourses, [[]]*numCourses 
 
 def dfs(vertex):
     colors[vertex] = 0
-    _children = children.get(vertex)
-    if _children:
-        for child in _children:
-            if colors.get(child) == 0:
-                return False
-            if not dfs(child):
-                return False
+    for child in children[vertex]:
+        if colors[child] == 0:
+            return False
+        if not dfs(child):
+            return False
     colors[vertex] = 1
     return True
 
@@ -25,19 +22,14 @@ class Solution(object):
         :type prerequisites: List[List[int]]
         :rtype: bool
         """
-        res = None
+        init(numCourses)
         for edge in prerequisites:  # build adj list
-            parent, child = edge[0], edge[1]
-            if parent not in children:
-                children[parent] = [child]
+            if not children[edge[0]]:
+                children[edge[0]] = [edge[1]]
             else:
-                children[parent].append(child)
-
-        #import pdb;pdb.set_trace()
-        for vertex, _ in children.items():
-            if vertex not in colors:
+                children[edge[0]].append(edge[1])
+        for vertex in xrange(numCourses):
+            if colors[vertex] is None:
                 if not dfs(vertex):
-                    clean()
                     return False
-        clean()
         return True
