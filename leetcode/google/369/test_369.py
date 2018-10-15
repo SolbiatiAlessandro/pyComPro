@@ -1,13 +1,14 @@
 import unittest
-import l369
+import l369b
 
 
 class testSolution( unittest.TestCase ):
 
     def setUp( self ):
-        self.s = l369.Solution()
+        self.s = l369b.Solution()
 
     def test_solution(self):
+        #import pdb;pdb.set_trace() 
         test_input, prer = 2, [[1, 0]]
         test_output = True
         got = self.s.canFinish(test_input, prer)
@@ -20,7 +21,7 @@ class testSolution( unittest.TestCase ):
         self.assertEqual(got, test_output)
 
         #import pdb;pdb.set_trace()
-        test_input, prer = 2, [[1, 0], [0, 2], [2, 1]]
+        test_input, prer = 3, [[1, 0], [0, 2], [2, 1]]
         test_output = False
         got = self.s.canFinish(test_input, prer)
         self.assertEqual(got, test_output)
