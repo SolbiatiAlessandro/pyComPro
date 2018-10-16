@@ -13,18 +13,16 @@ class Solution(object):
         :type root: TreeNode
         :rtype: bool
         """
-        node, stack, prev = root, [], None
-        while node:
-            stack.append(node)
-            node = node.left
-        while stack:
-            node = stack.pop()
-            if prev is not None and node.val <= prev:
-                return False
-            prev = node.val
-            node = node.right
-            while node:
-                stack.append(node)
-                node = node.left
-        return True
-        
+        stack, prev = [], None
+        while True:
+            if root:
+                stack.append(root)
+                root = root.left
+            elif stack:
+                root = stack.pop()
+                if prev is not None and root.val <= prev:
+                    return False
+                prev = root.val
+                root = root.right
+            else:
+                return True
