@@ -15,17 +15,8 @@ class Solution(object):
         :type target: float
         :rtype: int
         """
-        big, small = None, None
+        res = root.val
         while root:
-            if root.val == target:
-                return root.val
-            elif root.val > target:
-                big = min(root.val, big) if big is not None else root.val
-                root = root.left
-            else:
-                small = max(root.val, small)
-                root = root.right
-        if big is None: return small
-        if small is None: return big
-        if big - target < target - small: return big
-        return small
+            res = min((res, root.val), key=lambda x: abs(x - target))
+            root = root.left if target < root.val else root.right
+        return res
