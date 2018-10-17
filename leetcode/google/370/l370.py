@@ -29,6 +29,7 @@ def solve(solution):
     Return:
         res: list[list[int]] list of solutions
     """
+    print solution
     if not is_valid(solution):
         return
     if len(solution) == LEN:

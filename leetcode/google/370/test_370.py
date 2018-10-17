@@ -56,7 +56,7 @@ class testSolution(unittest.TestCase):
         ]
         got = self.s.wordSquares(words)
         self.assertItemsEqual(got, expected)
-
+        import pdb;pdb.set_trace()
         words = ["abat","baba","atan","atal"]
         expected = [
           [ "baba",
