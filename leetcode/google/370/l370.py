@@ -1,6 +1,7 @@
 """interview/card/google/62/recursion-4/370/"""
 
 
+
 def is_valid(solution):
     """
     compute if the solution (or partial solution) is valid
@@ -29,7 +30,6 @@ def solve(solution):
     Return:
         res: list[list[int]] list of solutions
     """
-    print solution
     if not is_valid(solution):
         return
     if len(solution) == LEN:
