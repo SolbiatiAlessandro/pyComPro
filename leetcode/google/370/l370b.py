@@ -1,5 +1,8 @@
 from collections import defaultdict
-
+"""
+solution2
+6.79291796684
+"""
 
 class Solution(object):
     def wordSquares(self, words):
