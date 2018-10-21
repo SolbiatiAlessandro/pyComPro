@@ -1,3 +1,4 @@
+
 import unittest
 import l370d
 
@@ -13,19 +14,22 @@ class testSolution(unittest.TestCase):
         bt = l370d.build_prefix_trie
         trie = bt(self.words)
         self.assertEqual(trie.char, '*')
-        self.assertFalse(trie.children[ord("d")-97])
-        self.assertTrue(trie.children[ord("l")-97])
-        self.assertEqual(trie.children[ord("a")-97].children[ord("r")-97].children[ord("e")-97]\
-                .children[ord("a")-97].index, 0)
-        self.assertEqual(trie.children[ord("b")-97].children[ord("a")-97].children[ord("l")-97]\
-                .children[ord("l")-97].index, 4)
-        self.assertEqual(trie.children[ord("l")-97].children[ord("a")-97].children[ord("d")-97]\
-                .children[ord("y")-97].index, 3)
-        self.assertEqual(trie.children[ord("w")-97].children[ord("a")-97].children[ord("l")-97]\
-                .children[ord("l")-97].index, 2)
-        self.assertEqual(trie.children[ord("l")-97].children[ord("e")-97].children[ord("a")-97]\
-                .children[ord("d")-97].index, 1)
+        self.assertFalse(trie.children["d"])
+        self.assertTrue(trie.children["l"])
+        self.assertEqual(trie.children["a"].children["r"].children["e"]\
+                .children["a"].indexes, [0])
+        self.assertEqual(trie.children["b"].children["a"].children["l"]\
+                .children["l"].indexes, [4])
+        self.assertEqual(trie.children["l"].children["a"].children["d"]\
+                .children["y"].indexes, [3])
+        self.assertEqual(trie.children["w"].children["a"].children["l"]\
+                .children["l"].indexes, [2])
+        self.assertEqual(trie.children["l"].children["e"].children["a"]\
+                .children["d"].indexes, [1])
+        self.assertItemsEqual(trie.children["l"].indexes, [1,3])
 
+
+    #@unittest.skip("wait")
     def test_get_matches(self):
         gm = l370d.get_matches
         words = l370d.build_prefix_trie(self.s.words)
@@ -39,7 +43,6 @@ class testSolution(unittest.TestCase):
         self.assertFalse(got)
         got = gm(words, "rk")
         self.assertFalse(got)
-
 
         raw = ["abbba", "abbbc", "abbbd", "abbaa", "abbka", "abbia", "abjaa"]
         words = l370d.build_prefix_trie(raw)

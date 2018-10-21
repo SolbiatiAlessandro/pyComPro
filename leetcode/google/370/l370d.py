@@ -1,7 +1,11 @@
+from collections import defaultdict
+
+
 class Node(object):
     def __init__(self, letter):
         self.char = letter
-        self.children = [None] * 27
+        self.children = defaultdict(list)
+        self.indexes = []
 
 
 def build_prefix_trie(words):
@@ -18,16 +22,17 @@ def build_prefix_trie(words):
     for word_index, word in enumerate(words):
         letter_index, curr = 0, tree
 
-        while curr.children[ord(word[letter_index]) - 97]:  # already existing
-            curr = curr.children[ord(word[letter_index]) - 97]
+        while curr.children[word[letter_index]]:  # already existing
+            curr = curr.children[word[letter_index]]
+            curr.indexes.append(word_index)
             letter_index += 1
 
         while letter_index < LEN_WORD:  # create new nodes
             new_node = Node(word[letter_index])
-            curr.children[ord(word[letter_index]) - 97] = new_node
+            curr.children[word[letter_index]] = new_node
             curr = new_node
+            curr.indexes.append(word_index)
             letter_index += 1
-        curr.index = word_index
     return tree
 
 
@@ -48,21 +53,10 @@ def get_matches(trie, query):
     """
     for letter in query:
         if trie:
-            trie = trie.children[ord(letter) - 97]
+            trie = trie.children[letter]
         if not trie:
             return []
-    if hasattr(trie, 'index'):
-        return [trie.index]
-    res, stack = [], [trie]  # run dfs
-    while stack:
-        node = stack.pop()
-        if hasattr(node, 'index'):
-            res.append(node.index)
-        else:
-            for child in node.children:
-                if child:
-                    stack.append(child)
-    return res
+    return trie.indexes
 
 
 class Solution(object):
