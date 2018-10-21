@@ -1,10 +1,7 @@
-from collections import defaultdict
-
-
 class Node(object):
     def __init__(self, letter):
         self.char = letter
-        self.children = defaultdict(list)
+        self.children = [None] * 27
 
 
 def build_prefix_trie(words):
@@ -21,13 +18,13 @@ def build_prefix_trie(words):
     for word_index, word in enumerate(words):
         letter_index, curr = 0, tree
 
-        while curr.children[word[letter_index]]:  # already existing
-            curr = curr.children[word[letter_index]]
+        while curr.children[ord(word[letter_index]) - 97]:  # already existing
+            curr = curr.children[ord(word[letter_index]) - 97]
             letter_index += 1
 
         while letter_index < LEN_WORD:  # create new nodes
             new_node = Node(word[letter_index])
-            curr.children[word[letter_index]] = new_node
+            curr.children[ord(word[letter_index]) - 97] = new_node
             curr = new_node
             letter_index += 1
         curr.index = word_index
@@ -51,7 +48,7 @@ def get_matches(trie, query):
     """
     for letter in query:
         if trie:
-            trie = trie.children[letter]
+            trie = trie.children[ord(letter) - 97]
         if not trie:
             return []
     if hasattr(trie, 'index'):
@@ -62,7 +59,7 @@ def get_matches(trie, query):
         if hasattr(node, 'index'):
             res.append(node.index)
         else:
-            for _, child in node.children.items():
+            for child in node.children:
                 if child:
                     stack.append(child)
     return res
@@ -96,10 +93,6 @@ class Solution(object):
 
             matches = get_matches(trie, query)
             for match in matches:
-                if type(match) is not type(1):
-                    import pdb;pdb.set_trace()
-                    matches = get_matches(trie, query)
-                    exit("type error")
                 solve(solution + [match])
 
         for i in xrange(len(words)):
