@@ -1,0 +1,20 @@
+from collections import defaultdict
+
+class Node(object):
+    def __init__(self, letter):
+        self.letter = letter
+        self.children = defaultdict(Node)
+
+def make_trie(words):
+    trie = Node('')
+    for word in words:
+        pass
+
+class Solution(object):
+    def findWords(self, board, words):
+        """
+        :type board: List[List[str]]
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        

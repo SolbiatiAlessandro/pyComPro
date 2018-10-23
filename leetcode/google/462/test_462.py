@@ -1,0 +1,67 @@
+import unittest
+import l462
+
+
+class testSolution( unittest.TestCase ):
+
+    def setUp( self ):
+        self.s = l462.Solution()
+        self.words = ["area","lead","wall","lady","ball"]
+
+    def test_trie(self):
+        bt = l462.make_trie
+        trie = bt(self.words)
+        self.assertFalse(trie.children.get("d"))
+        self.assertTrue(trie.children["l"])
+        self.assertEqual(trie.children["a"].children["r"].children["e"]\
+                .children["a"].index, 0)
+        self.assertEqual(trie.children["b"].children["a"].children["l"]\
+                .children["l"].index, 4)
+        self.assertEqual(trie.children["l"].children["a"].children["d"]\
+                .children["y"].index, 3)
+        self.assertEqual(trie.children["w"].children["a"].children["l"]\
+                .children["l"].index, 2)
+        self.assertEqual(trie.children["l"].children["e"].children["a"]\
+                .children["d"].index, 1)
+        
+    
+    #@unittest.skip("wait") 
+    def test_solution(self):
+        words = ["oath","pea","eat","rain"] 
+        board = [
+          ['o','a','a','n'],
+          ['e','t','a','e'],
+          ['i','h','k','r'],
+          ['i','f','l','v']
+        ]
+        got = self.s.findWords(board, words)
+        expected = ["eat","oath"]
+        self.assertItemsEqual(got, expected)
+
+        words = ["oath","pea","eat","rain","rained","raining"] 
+        board = [
+          ['o','a','a','n','n','i'],
+          ['e','t','a','e','i','d'],
+          ['i','h','k','r','a','e'],
+          ['i','f','l','v','i','n']
+        ]
+        got = self.s.findWords(board, words)
+        expected = ["eat","oath","rained","rain"]
+        self.assertItemsEqual(got, expected)
+
+        words = ["oath","pea","eat","rain","rained","raining"] 
+        board = []
+        got = self.s.findWords(board, words)
+        expected = []
+        self.assertItemsEqual(got, expected)
+
+        #import pdb;pdb.set_trace()
+        board = [["a","a"]]
+        words = ["aaa"]
+        got = self.s.findWords(board, words)
+        expected = []
+        self.assertItemsEqual(got, expected)
+
+
+if __name__ == "__main__":
+    unittest.main()
