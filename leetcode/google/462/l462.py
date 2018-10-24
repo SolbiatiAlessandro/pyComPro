@@ -62,7 +62,7 @@ def clean_words(words, cardinality):
             res.add(word)
     return list(res)
 
-            
+
 class Solution(object):
     def findWords(self, board, words):
         """
@@ -91,6 +91,7 @@ class Solution(object):
             visited[(x, y)] = 1
             if hasattr(node, 'index'):
                 res.add(words[node.index])
+                del node.index
             for letter, child in node.children.items():
                 for X, Y in [(x+1, y), (x, y+1), (x-1, y), (x, y-1)]:
                     if visited[(X, Y)] != 1   and\

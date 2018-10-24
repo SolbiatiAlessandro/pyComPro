@@ -9,6 +9,12 @@ class testSolution( unittest.TestCase ):
         self.words = ["area","lead","wall","lady","ball"]
 
     def test_trie(self):
+
+        def traverse_trie(root, visit):
+            visit(root)
+            for _, child in root.children.items():
+                traverse_trie(child, visit)
+
         bt = l462.make_trie
         trie = bt(self.words)
         self.assertFalse(trie.children.get("d"))
@@ -36,6 +42,16 @@ class testSolution( unittest.TestCase ):
         words = ["abcd", "ab"]
         trie = bt(words)
         self.assertEqual(trie.children['a'].children['b'].index, 1)
+
+        words = ["oath","pea","eat","rain","rained","raining","rainidi","rainedi"]
+        trie = bt(words)
+        indexes = []
+        def visit(node):
+            if hasattr(node, 'index'):
+                indexes.append(node.index)
+        traverse_trie(trie, visit)
+        self.assertItemsEqual(indexes, range(len(words)))
+
     
     #@unittest.skip("wait") 
     def test_solution(self):
@@ -61,11 +77,6 @@ class testSolution( unittest.TestCase ):
         expected = ["eat","oath","rained","rain","rainedi"]
         self.assertItemsEqual(got, expected)
 
-        words = ["oath","pea","eat","rain","rained","raining","rainidi","rainedi"] 
-        board = []
-        got = self.s.findWords(board, words)
-        expected = []
-        self.assertItemsEqual(got, expected)
 
         #import pdb;pdb.set_trace()
         board = [["a","a"]]
