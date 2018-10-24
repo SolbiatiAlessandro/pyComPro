@@ -36,6 +36,32 @@ def make_trie(words):
             index += 1
         curr.index = word_index
     return trie
+
+
+def clean_words(words, cardinality):
+    """clean words to avoid un-necessary recursions
+    - removes duplicate using set
+    - count if letter frequency is higher than the one in the board
+
+    Args:
+        words: list[str]
+        cardinality: defaultdict(int) for letter fre
+
+    Returns:
+        res: list[str]
+    """
+    res = set()
+    for word in words:
+        word_cardinality, clean = defaultdict(int), True
+        for letter in word:
+            word_cardinality[letter] += 1
+        for letter, frequency in word_cardinality.items():
+            if clean and cardinality[letter] < frequency:
+                clean = False
+        if clean:
+            res.add(word)
+    return list(res)
+
             
 class Solution(object):
     def findWords(self, board, words):
@@ -44,13 +70,16 @@ class Solution(object):
         :type words: List[str]
         :rtype: List[str]
         """
-        words = list(set(words))
-        res, trie, positions = set(), make_trie(words), defaultdict(list)
-        visited = defaultdict(int)
+        cardinality = defaultdict(int)
+        visited, positions = defaultdict(int), defaultdict(list)
 
         for y in xrange(len(board)):
             for x in xrange(len(board[y])):
                 positions[board[y][x]].append((x, y))
+                cardinality[board[y][x]] += 1
+
+        words = clean_words(words, cardinality)
+        res, trie = set(), make_trie(words)
 
         def call(x, y, node):
             """recursive call the run over thourgh the trie
