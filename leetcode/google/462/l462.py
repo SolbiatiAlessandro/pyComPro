@@ -46,33 +46,33 @@ class Solution(object):
         """
         words = list(set(words))
         res, trie, positions = set(), make_trie(words), defaultdict(list)
+        visited = defaultdict(int)
 
         for y in xrange(len(board)):
             for x in xrange(len(board[y])):
                 positions[board[y][x]].append((x, y))
 
-        def call(x, y, node, visited):
+        def call(x, y, node):
             """recursive call the run over thourgh the trie
             and the board at the same time
             Args:
                 x, y : (int, int) position on the board
                 node: instance of trie Node
             """
-            if x == 1 and y == 4 and len(words) == 1000 and node.children: 
-                #import pdb;pdb.set_trace() 
-                pass
-            visited[(x, y)] = True
+            visited[(x, y)] = 1
             if hasattr(node, 'index'):
                 res.add(words[node.index])
             for letter, child in node.children.items():
                 for X, Y in [(x+1, y), (x, y+1), (x-1, y), (x, y-1)]:
-                    if not visited[(X, Y)] and\
-                       0 <= Y < len(board) and\
+                    if visited[(X, Y)] != 1   and\
+                       0 <= Y < len(board)    and\
                        0 <= X < len(board[0]) and\
                        board[Y][X] == letter:
-                        call(X, Y, child, visited.copy())
+                        call(X, Y, child)
+            visited[(x, y)] = 2
 
         for letter, branch in trie.children.items():
             for x, y in positions[letter]:
-                call(x, y, branch, defaultdict(bool))
+                visited.clear()
+                call(x, y, branch)
         return list(res)
