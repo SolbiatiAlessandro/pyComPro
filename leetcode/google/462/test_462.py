@@ -23,7 +23,19 @@ class testSolution( unittest.TestCase ):
                 .children["l"].index, 2)
         self.assertEqual(trie.children["l"].children["e"].children["a"]\
                 .children["d"].index, 1)
-        
+
+        """ this test is useless since we add list(set(words)) condition
+        words = ["aa", "ab", "ac", "ac"]
+        trie = bt(words)
+        self.assertEqual(trie.children['a'].children['c'].letter, 'c')
+        self.assertEqual(trie.children['a'].children['b'].letter, 'b')
+        self.assertEqual(trie.children['a'].children['b'].index, 1)
+        self.assertEqual(trie.children['a'].children['c'].index, 2)
+        """
+
+        words = ["abcd", "ab"]
+        trie = bt(words)
+        self.assertEqual(trie.children['a'].children['b'].index, 1)
     
     #@unittest.skip("wait") 
     def test_solution(self):
@@ -38,7 +50,7 @@ class testSolution( unittest.TestCase ):
         expected = ["eat","oath"]
         self.assertItemsEqual(got, expected)
 
-        words = ["oath","pea","eat","rain","rained","raining"] 
+        words = ["oath","pea","eat","rain","rained","raining","rainidi","rainedi"] 
         board = [
           ['o','a','a','n','n','i'],
           ['e','t','a','e','i','d'],
@@ -46,10 +58,10 @@ class testSolution( unittest.TestCase ):
           ['i','f','l','v','i','n']
         ]
         got = self.s.findWords(board, words)
-        expected = ["eat","oath","rained","rain"]
+        expected = ["eat","oath","rained","rain","rainedi"]
         self.assertItemsEqual(got, expected)
 
-        words = ["oath","pea","eat","rain","rained","raining"] 
+        words = ["oath","pea","eat","rain","rained","raining","rainidi","rainedi"] 
         board = []
         got = self.s.findWords(board, words)
         expected = []
@@ -60,6 +72,21 @@ class testSolution( unittest.TestCase ):
         words = ["aaa"]
         got = self.s.findWords(board, words)
         expected = []
+        self.assertItemsEqual(got, expected)
+
+        from custom_input import BOARD, WORDS, EXPECTED
+        trie = l462.make_trie(WORDS)
+        c_node = trie.children['a'].children['a'].children['a'].children['a'].children['a'].children['a'].children['a'].children['a'].children['a'].children['a'].children['a'].children['a'].children['a'].children['a'].children['c']
+        self.assertTrue(c_node.children['g'])
+        self.assertTrue(c_node.children['z'])
+        got = self.s.findWords(BOARD, WORDS)
+        self.assertItemsEqual(got, EXPECTED)
+
+        board = [["a","b"],["c","d"]]
+        words = ["ab","cb","ad","bd","ac","ca","da","bc","db","adcb","dabc","abb","acb"]
+        #import pdb;pdb.set_trace()
+        got = self.s.findWords(board, words)
+        expected = ["ab","ac","bd","ca","db"]
         self.assertItemsEqual(got, expected)
 
 

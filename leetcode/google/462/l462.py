@@ -22,6 +22,9 @@ def make_trie(words):
             prev = curr
             curr = curr.children.get(word[index])
             if curr:
+                if index == len(word) - 1:
+                    curr.index = word_index
+                    continue
                 index += 1
         curr = prev
         if not curr:
@@ -41,6 +44,7 @@ class Solution(object):
         :type words: List[str]
         :rtype: List[str]
         """
+        words = list(set(words))
         res, trie, positions = set(), make_trie(words), defaultdict(list)
 
         for y in xrange(len(board)):
@@ -54,6 +58,9 @@ class Solution(object):
                 x, y : (int, int) position on the board
                 node: instance of trie Node
             """
+            if x == 1 and y == 4 and len(words) == 1000 and node.children: 
+                #import pdb;pdb.set_trace() 
+                pass
             visited[(x, y)] = True
             if hasattr(node, 'index'):
                 res.add(words[node.index])
