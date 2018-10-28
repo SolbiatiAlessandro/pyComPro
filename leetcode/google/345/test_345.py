@@ -1,11 +1,11 @@
 import unittest
-import l345
+import l345b
 
 
 class testSolution(unittest.TestCase):
     
     def setUp( self ):
-        self.s = l345.Solution()
+        self.s = l345b.Solution()
 
     def test_solution( self ):
         #import pdb;pdb.set_trace() 
@@ -49,7 +49,24 @@ class testSolution(unittest.TestCase):
         expected = "ADOBECODEBANC"
         got = self.s.minWindow(S,T)
         self.assertEqual(got, expected)
-        
+
+        S, T = "BAAECABAECB", "BBCE"
+        expected = "BAECB"
+        got = self.s.minWindow(S,T)
+        self.assertEqual(got, expected)
+
+        S, T = "B", "A"
+        expected = ""
+        got = self.s.minWindow(S,T)
+        self.assertEqual(got, expected)
+
+        S, T = "BBA", "AB"
+        expected = "BA"
+        got = self.s.minWindow(S,T)
+        self.assertEqual(got, expected)
+
+
+
         
 if __name__ == "__main__":
     unittest.main()
