@@ -15,7 +15,7 @@ class Solution(object):
                     distances[(i, j)][source_counter] = 0
                     source_counter += 1
 
-        res = 1e9
+        res, generation, prev_generation, start_pruning = 1e9, 1, 1e9+1, False
         while sources:
             x, y, index = sources.pop()
             for i, j in [(x+1, y), (x, y+1), (x-1, y), (x, y-1)]:
@@ -24,8 +24,15 @@ class Solution(object):
                    0 <= j < len(grid[0]) and\
                    query.get(index) is None and\
                    grid[i][j] == 0:
-                    query[index] = distances[(x, y)][index] + 1
+                    new_distance = distances[(x, y)][index] + 1
+                    if new_distance != generation:
+                        generation = new_distance
+                        if start_pruning and res >= prev_generation:
+                            return res
+                        prev_generation = res
+                    query[index] = new_distance
                     if len(query) == source_counter:
+                        start_pruning = True
                         total_distance = sum([distance for _, distance
                                               in query.items()])
                         res = min(res, total_distance)
