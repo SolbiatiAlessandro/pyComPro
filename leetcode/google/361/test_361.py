@@ -1,11 +1,11 @@
 import unittest
-import l361
+import l361b
 
 
 class testSolution(unittest.TestCase):
     
     def setUp( self ):
-        self.s = l361.Solution()
+        self.s = l361b.Solution()
 
     #@unittest.skip("Wait")
     def test_solution( self ):
@@ -15,23 +15,24 @@ class testSolution(unittest.TestCase):
         output = 5
         self.assertEqual(self.s.findKthLargest(test_input, k), output)
 
+        #import pdb;pdb.set_trace()
         test_input = [3,2,3,1,2,4,5,5,6] 
         k = 4
         output = 4
         self.assertEqual(self.s.findKthLargest(test_input, k), output)
 
-        test_input = xrange(20)
+        test_input = range(20)
         k = 6
         output = 14
         self.assertEqual(self.s.findKthLargest(test_input, k), output)
 
-        test_input = xrange(20)
+        test_input = range(20)
         k = 14
         output = 6
         self.assertEqual(self.s.findKthLargest(test_input, k), output)
 
-        test_input = xrange(100)
-        for i in xrange(1, 100):
+        test_input = range(100)
+        for i in range(1, 100):
             k = i
             output = 100 - i
             try:
