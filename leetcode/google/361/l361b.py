@@ -1,3 +1,5 @@
+from random import random
+
 class Solution(object):
     def findKthLargest(self, nums, k):
         """
@@ -25,6 +27,8 @@ class Solution(object):
 
         start, end = 0, len(nums) - 1
         while True:
+            i = int(random() * (end - start)) + start
+            nums[end], nums[i] = nums[i], nums[end]
             index = partition(start, end)
             if len(nums) - index == k:
                 return nums[index]
