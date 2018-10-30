@@ -16,6 +16,7 @@ class testSolution(unittest.TestCase):
         got = self.s.shortestDistance(grid)
         self.assertEqual(got, 10)
 
+    #@unittest.skip("wait")
     def test_optimization(self):
         from time import time
         grid = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,1,0,2,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
