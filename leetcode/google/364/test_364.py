@@ -26,6 +26,21 @@ class testSolution(unittest.TestCase):
         self.assertEqual(got, 7)
         print t1 - t
 
+    #@unittest.skip("wait")
+    def test_custom(self):
+        grid = [[1,1,1,1,1,1,1,0],[0,0,0,0,0,0,0,1],[1,1,1,1,1,1,0,1],[1,0,0,0,0,1,0,1],[1,0,1,1,0,1,0,1],[1,0,1,0,0,1,0,1],[1,0,1,1,1,1,0,1],[1,0,0,0,0,0,0,1],[0,1,1,1,1,1,1,0]]
+        from time import time
+        t = time()
+        got = self.s.shortestDistance(grid)
+        t1 = time()
+        print t1-t
+        self.assertEqual(got, 269)
+
+    def test_connected_comp(self):
+        grid = [[1,0]]
+        got = self.s.shortestDistance(grid)
+        self.assertEqual(got, 1)
+
         
 
 if __name__ == "__main__":
