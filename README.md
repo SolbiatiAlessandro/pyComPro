@@ -28,3 +28,9 @@ Here is a subset of the problems labeled **'hard'** you can find in the repo (no
  - [length of the longest substring with K different elements given a string of chars](https://github.com/SolbiatiAlessandro/pyComPro/blob/master/leetcode/google/332/l332.py)
  - [merge K sorted list](https://github.com/SolbiatiAlessandro/pyComPro/blob/master/leetcode/google/342/l342c.py)
  - [find the First Missing Positive integer in a given array of integers](https://github.com/SolbiatiAlessandro/pyComPro/blob/master/leetcode/google/457/l457.py)
+
+The solutions are organized into folder named with an interger, the integer stands for the problem number from the leetcode link. For example:
+
+"https://leetcode.com/explore/interview/card/google/63/sorting-and-searching-4/439/" -> leetcode/google/439
+
+For every solution there will be a solution file and a test file, i.e l439.py and test_439.py
