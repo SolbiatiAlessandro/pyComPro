@@ -23,6 +23,11 @@ class testSolution(unittest.TestCase):
         k = 1
         got = self.s.smallestDistancePair(nums, k)
         self.assertEqual(got, 0)
+
+    def test_custom(self):
+        nums = [9,10,7,10,6,1,5,4,9,8]
+        got = self.s.smallestDistancePair(nums, 18)
+        self.assertEqual(got, 2)
             
 
 if __name__ == "__main__":
