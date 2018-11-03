@@ -5,12 +5,40 @@ def compute_range(nums, distance):
     """
     compute how many distances are smaller then distance
     and how many distances are equal to distance, among all
-    possible distances in nums
+    possible distances in nums, time complexity O(len(nums)^2)
 
     Arg:
         distance : (int), the distance to query
     Returns:
-        first, last : indexes of first (inclusive) and last
+        first, last : zero-based indexes of first (inclusive) and last
+        (exclusive) element equal to distance in the sorted
+        list of distances in nums: [first, last)
+    """
+    less, equal = 0, 0
+    for i, num in enumerate(nums):
+        for high in xrange(0, i):
+            if nums[high] + distance > num:
+                less += 1
+            elif nums[high] + distance == num:
+                equal += 1
+        for low in xrange(i + 1, len(nums)):
+            if nums[low] - distance < num:
+                less += 1
+            elif nums[low] - distance == num:
+                equal += 1
+        print num, less, equal
+    return less/2, less/2 + equal/2
+
+def compute_range_fast(nums, distance):
+    """
+    compute how many distances are smaller then distance
+    and how many distances are equal to distance, among all
+    possible distances in nums, time complexity O(len(nums))
+
+    Arg:
+        distance : (int), the distance to query
+    Returns:
+        first, last : zero-based indexes of first (inclusive) and last
         (exclusive) element equal to distance in the sorted
         list of distances in nums: [first, last)
     """
@@ -36,6 +64,7 @@ def compute_range(nums, distance):
             high += 1
             equal += 1
         less += i - high
+
 
     return max(0, less/2), less/2 + equal/2
 
