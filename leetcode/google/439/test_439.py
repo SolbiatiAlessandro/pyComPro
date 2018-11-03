@@ -32,6 +32,7 @@ class testSolution(unittest.TestCase):
         got = self.s.smallestDistancePair(nums, 18)
         self.assertEqual(got, 2)
 
+    @unittest.skip("Wait")
     def test_range(self):
         nums = [1,3,4,5,5,9]
         a, b = l439c.compute_range(nums, 4)
@@ -84,17 +85,54 @@ class testSolution(unittest.TestCase):
     #@unittest.skip("wait")
     def test_range_continguos(self):
         nums = [0,0,0,1,1,1,2,2,2]
+        nums.append(1e9)
         print "\ndebug 0"
         got = l439c.compute_range(nums, 0)
+        self.assertEqual(got, (0,9))
+        print "\ndebug fast 0"
+        got = l439c.compute_range_fast(nums, 0)
         self.assertEqual(got, (0,9))
         print "\ndebug 1"
         got = l439c.compute_range(nums, 1)
         self.assertEqual(got, (9,27))
+        got = l439c.compute_range_fast(nums, 1)
+        self.assertEqual(got, (9,27))
         print "\ndebug 2"
+        got = l439c.compute_range_fast(nums, 2)
+        self.assertEqual(got, (27,36))
         got = l439c.compute_range(nums, 2)
         self.assertEqual(got, (27,36))
 
         print "rangok"
+
+    def test_range_compare(self):
+        nums = [1,3,4,5,5,9]
+        nums.append(1e9)
+        print "\nslow"
+        aa, bb = l439c.compute_range(nums, 4)
+        self.assertEqual((aa,bb),(8,12))
+        print "\nfast"
+        a, b = l439c.compute_range_fast(nums, 4)
+        self.assertEqual((a,b),(8,12))
+        print "\nslow"
+        aa, bb = l439c.compute_range(nums, 3)
+        self.assertEqual((aa,bb),(7,8))
+        print "\nfast"
+        a, b = l439c.compute_range_fast(nums, 3)
+        self.assertEqual((a,b),(7,8))
+        a, b = l439c.compute_range_fast(nums, 2)
+        self.assertEqual((a,b),(4,7))
+        a, b = l439c.compute_range_fast(nums, 2.5)
+        self.assertEqual((a,b),(7,7))
+        a, b = l439c.compute_range_fast(nums, 1)
+        self.assertEqual((a,b),(1,4))
+        a, b = l439c.compute_range_fast(nums, 0)
+        self.assertEqual((a,b),(0,1))
+        a, b = l439c.compute_range_fast(nums, 5)
+        self.assertEqual((a,b),(12,13))
+
+        print "ok fast range"
+
 
 
 if __name__ == "__main__":

@@ -26,8 +26,7 @@ def compute_range(nums, distance):
                 less += 1
             elif nums[low] - distance == num:
                 equal += 1
-        print num, less, equal
-    return less/2, less/2 + equal/2
+    return max(0, less/2), less/2 + equal/2
 
 def compute_range_fast(nums, distance):
     """
@@ -43,31 +42,21 @@ def compute_range_fast(nums, distance):
         list of distances in nums: [first, last)
     """
     less, equal = 0, 0
-    low, high = 0, - 1
-    for i, num in enumerate(nums):
+    a, b = 0, 0  # a, b are the extremes of the segment of less distances
+    c, d = 0, 0  # c, d are the extremes of the segment of less/equal distances
+    for i in xrange(len(nums) - 1):
+        num = nums[i]
+        while c < len(nums) and nums[c] + distance < num: c += 1
+        a = c
+        while a < len(nums) and nums[a] + distance == num: a += 1
+        while b < len(nums) - 1 and nums[b + 1] - distance < num: b += 1
+        d = b
+        while d < len(nums) - 1 and nums[d + 1] - distance == num: d += 1
 
-        less += low - i - 1
-        while low < len(nums) - 1 and nums[low + 1] - distance < num:
-            less += 1
-            low += 1
-        if nums[low] - distance == num:
-            equal += 1
-        while low < len(nums) - 1 and nums[low + 1] - distance == num:
-            equal += 1
-            low += 1
+        less += b - a
+        equal += d - c
 
-        while high < len(nums) - 1 and nums[high + 1] + distance < num:
-            high += 1
-        if nums[high] + distance == num:
-            equal += 1
-        while high < len(nums) - 1 and nums[high + 1] + distance == num:
-            high += 1
-            equal += 1
-        less += i - high
-
-
-    return max(0, less/2), less/2 + equal/2
-
+    return max(0, less/2), equal/2
 
 class Solution(object):
     def smallestDistancePair(self, nums, k):
