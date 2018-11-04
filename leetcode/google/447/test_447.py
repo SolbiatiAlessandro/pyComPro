@@ -21,6 +21,18 @@ class testSolution(unittest.TestCase):
         got = self.s.kSmallestPairs(nums1, nums2, k)
         self.assertEqual(got, [[1,1],[1,1]])
 
+        nums1 = [1,1,2]
+        nums2 = []
+        k = 2
+        got = self.s.kSmallestPairs(nums1, nums2, k)
+        self.assertEqual(got, [])
+
+        nums1 = []
+        nums2 = [1,2,3]
+        k = 2
+        got = self.s.kSmallestPairs(nums1, nums2, k)
+        self.assertEqual(got, [])
+
         nums1 = [1,2]
         nums2 = [3]
         k = 3

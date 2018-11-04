@@ -9,7 +9,7 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         heap = [(num + nums2[0], index, 0)
-                for index, num in enumerate(nums1)]
+                for index, num in enumerate(nums1)] if nums2 else []
         heapq.heapify(heap)
 
         res = []
