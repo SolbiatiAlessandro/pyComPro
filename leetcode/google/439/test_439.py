@@ -1,6 +1,7 @@
 import unittest
 import l439c
 import custom_input
+import custom_input_long
 
 
 class testSolution(unittest.TestCase):
@@ -100,6 +101,16 @@ class testSolution(unittest.TestCase):
         t2 = time()
         #self.assertEqual(got, 0)
         print "len(200), k=10000"
+        print t2 - t1
+
+    def test_custom_tle(self):
+        nums = custom_input_long.nums
+        from time import time
+        t1 = time()
+        got = self.s.smallestDistancePair(nums, custom_input_long.k)
+        t2 = time()
+        #self.assertEqual(got, 0)
+        print "len(nums) = 10000"
         print t2 - t1
 
     #@unittest.skip("wait")

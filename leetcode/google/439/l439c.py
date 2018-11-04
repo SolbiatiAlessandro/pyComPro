@@ -1,6 +1,3 @@
-from collections import defaultdict
-
-
 def compute_range(nums, distance):
     """
     compute how many distances are smaller then distance
@@ -38,18 +35,13 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        k -= 1
-        sorted_nums = sorted(nums)
+        k, sorted_nums = k-1, sorted(nums)
         b = sorted_nums[-1] - sorted_nums[0]
-        a = min([abs(sorted_nums[i+1] - sorted_nums[i]) for i in xrange(len(nums) - 1)])
+        a = min([sorted_nums[i+1] - sorted_nums[i] for i in xrange(len(nums) - 1)])
         sorted_nums.append(1e9)
         while True:
             m = (b-a)/2 + a
-            prev = m
             start, end = compute_range(sorted_nums, m)
-            if start <= k < end:
-                return m
-            elif k >= end:
-                a = m + 1
-            else:
-                b = m - 1
+            if start <= k < end: return m
+            elif k >= end: a = m + 1
+            else: b = m - 1
