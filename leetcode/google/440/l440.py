@@ -36,8 +36,9 @@ class RangeModule(object):
             self.nums.insert(right_index + 1, right)
         if left_index % 2 == addRange:
             self.nums.insert(left_index + 1, left)
-        for i in xrange(left_index + 1, right_index):
-            del self.nums[i]
+            left_index += 1
+            right_index += 1
+        del self.nums[left_index + 1: right_index + 1]
 
 
     def addRange(self, left, right):
