@@ -73,6 +73,15 @@ class testSolution(unittest.TestCase):
         self.assertListEqual(self.api.nums, [])
         self.api.addRange(20, 100)
         self.assertListEqual(self.api.nums, [20, 100])
+        # remove coincident
+        #import pdb;pdb.set_trace()
+        self.api.removeRange(20, 50)
+        self.assertListEqual(self.api.nums, [50,100])
+
+        self.api.addRange(20, 100)
+        self.assertListEqual(self.api.nums, [20, 100])
+        # remove coincident
+
         # add from left
         self.api.addRange(15, 50)
         self.assertListEqual(self.api.nums, [15, 100])
@@ -94,6 +103,10 @@ class testSolution(unittest.TestCase):
         self.assertListEqual(self.api.nums, [5, 1250])
         self.api.removeRange(85, 120)
         self.assertListEqual(self.api.nums, [5, 85, 120, 1250])
+        # add one before
+        #import pdb;pdb.set_trace()
+        self.api.addRange(4, 80)
+        self.assertListEqual(self.api.nums, [4, 85, 120, 1250])
 
         #query test left
         self.assertFalse(self.api.queryRange(3, 9))
@@ -110,8 +123,50 @@ class testSolution(unittest.TestCase):
         self.assertTrue(self.api.queryRange(5, 85))
         self.assertFalse(self.api.queryRange(5, 86))
 
-        
-        print "okk"
+    #@unittest.skip("")
+    def test_custom(self):
+        from custom_input import values, queries
+        for i, query in enumerate(queries):
+            if i == 79:
+                #import pdb;pdb.set_trace()
+                #print self.api.nums
+                pass
+            if i == 83:
+                self.assertFalse(self.api.queryRange(values[i][0], values[i][1]))
+            if query[0]=="a":
+                self.api.addRange(values[i][0], values[i][1])
+            if query[0]=="r":
+                self.api.removeRange(values[i][0], values[i][1])
+            if query[0]=="q":
+                self.api.queryRange(values[i][0], values[i][1])
+
+            # bug involving duplicates, duplicates should not exist
+            unique = set(self.api.nums)
+            try:
+                self.assertEqual(len(unique), len(self.api.nums))
+            except:
+                self.assertFalse(True)
+                print "\n"
+                print i
+                print query, values[i]
+                print self.api.nums
+
+    #@unittest.skip("")
+    def test_custom2(self):
+        from custom_input2 import values, queries
+        for i, query in enumerate(queries):
+            if i==7:
+                self.assertTrue(self.api.queryRange(values[i][0], values[i][1]))
+            if query[0]=="a":
+                self.api.addRange(values[i][0], values[i][1])
+            if query[0]=="r":
+                self.api.removeRange(values[i][0], values[i][1])
+            if query[0]=="q":
+                self.api.queryRange(values[i][0], values[i][1])
+
+            # bug involving duplicates, duplicates should not exist
+            unique = set(self.api.nums)
+            self.assertEqual(len(unique), len(self.api.nums))
 
 
 if __name__ == "__main__":

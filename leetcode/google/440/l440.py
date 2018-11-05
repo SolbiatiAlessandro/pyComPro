@@ -34,7 +34,7 @@ class RangeModule(object):
         right_index = binary_search(self.nums, right)
         if right_index % 2 == addRange:
             self.nums.insert(right_index + 1, right)
-        if left_index % 2 == addRange:
+        if left_index % 2 == addRange and self.nums[left_index] != left:
             self.nums.insert(left_index + 1, left)
             left_index += 1
             right_index += 1
