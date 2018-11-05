@@ -28,6 +28,8 @@ Here is a subset of the problems labeled **'hard'** you can find in the repo (no
  - [length of the longest substring with K different elements given a string of chars](https://github.com/SolbiatiAlessandro/pyComPro/blob/master/leetcode/google/332/l332.py)
  - [merge K sorted list](https://github.com/SolbiatiAlessandro/pyComPro/blob/master/leetcode/google/342/l342c.py)
  - [find the First Missing Positive integer in a given array of integers](https://github.com/SolbiatiAlessandro/pyComPro/blob/master/leetcode/google/457/l457.py)
+ - [find the k-th smallest difference among all the differences between the numbers of an array]
+ (https://github.com/SolbiatiAlessandro/pyComPro/tree/master/leetcode/google/439)
 
 The solutions are organized into folder named with an interger, the integer stands for the problem number from the leetcode link. For example:
 
