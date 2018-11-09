@@ -1,17 +1,16 @@
 import unittest
-import l451
+import l451b
 
 
 class testSolution(unittest.TestCase):
     
     def setUp( self ):
-        self.s = l451.Solution()
+        self.s = l451b.Solution()
 
     def test_solution( self ):
         
         got = self.s.longestPalindrome("abbkcj")
         self.assertEqual(got, "bb")
-        #import pdb;pdb.set_trace()
         got = self.s.longestPalindrome("babad")
         self.assertEqual(got, "bab")
         got = self.s.longestPalindrome("cbbbbd")
@@ -32,6 +31,7 @@ class testSolution(unittest.TestCase):
         self.assertEqual(got, "")
         got = self.s.longestPalindrome("aacdefcaa")
         self.assertEqual(got, "aa")
+
 
 if __name__ == "__main__":
     unittest.main()
