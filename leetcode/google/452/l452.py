@@ -15,7 +15,7 @@ class Solution(object):
                     x += 1; y -= 1
                     direction = not direction
             else:
-                if y == len(matrix[0]) - 1: x += 1
+                if y == len(matrix) - 1: x += 1
                 elif x == 0: y += 1
                 else: 
                     y += 1; x -= 1
