@@ -1,11 +1,11 @@
 import unittest
-import l452
+import l452b
 
 
 class testSolution(unittest.TestCase):
     
     def setUp( self ):
-        self.s = l452.Solution()
+        self.s = l452b.Solution()
 
     #@unittest.skip("")
     def test_solution( self ):
