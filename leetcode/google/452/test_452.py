@@ -1,0 +1,40 @@
+import unittest
+import l452
+
+
+class testSolution(unittest.TestCase):
+    
+    def setUp( self ):
+        self.s = l452.Solution()
+
+    def test_solution( self ):
+        matrix = [
+                 [ 1, 2, 3 ],
+                 [ 4, 5, 6 ],
+                 [ 7, 8, 9 ]
+                ]
+        got = self.s.findDiagonalOrder(matrix)
+        self.assertEqual(got , [1,2,4,7,5,3,6,8,9])
+                        
+        matrix = [
+                 [ 1, 2 ],
+                 [ 4, 5 ]
+                ]
+        got = self.s.findDiagonalOrder(matrix)
+        self.assertEqual(got , [1,2,4,5])
+                        
+        matrix = [
+                 [ 1 ]
+                ]
+        got = self.s.findDiagonalOrder(matrix)
+        self.assertEqual(got , [1])
+
+        matrix = []
+        got = self.s.findDiagonalOrder(matrix)
+        self.assertEqual(got , [])
+                        
+
+
+if __name__ == "__main__":
+    unittest.main()
+
