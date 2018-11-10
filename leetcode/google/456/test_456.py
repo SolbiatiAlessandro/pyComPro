@@ -1,11 +1,11 @@
 import unittest
-import l456
+import l456b
 
 
 class testSolution(unittest.TestCase):
     
     def setUp( self ):
-        self.s = l456.Solution()
+        self.s = l456b.Solution()
 
     def test_solution( self ):
         matrix =  [[1,   2,   2,   3,   5],
