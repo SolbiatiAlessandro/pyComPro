@@ -8,11 +8,10 @@ class Solution(object):
         :rtype: List[int]
         """
         #import pdb;pdb.set_trace()
-        res, nums_with_index = [], sorted(zip(nums, range(len(nums))))
+        res = []
         answers = dict()
         for query in findNums:
-            index = bisect.bisect(nums_with_index, (query, -1))
-            original_index = nums_with_index[index][1]
+            original_index = nums.index(query)
             found = False
             for num in nums[original_index:]:
                 num_answer = answers.get(num)
