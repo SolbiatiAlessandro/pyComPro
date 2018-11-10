@@ -8,7 +8,8 @@ class Solution(object):
         :type matrix: List[List[int]]
         :rtype: List[List[int]]
         """
-        res, res_list = defaultdict(int), []
+        res_list = []
+        first_res, second_res = defaultdict(bool), defaultdict(bool)
         order = PriorityQueue()
 
         for i, row in enumerate(matrix):
@@ -31,12 +32,11 @@ class Solution(object):
                     elif x == len(matrix) or y == len(matrix[0]):
                         second = True
                     elif not visited[(x, y)] and matrix[x][y] <= height:
-                        if res[(x, y)]:
-                            first, second = True, True
-                            break
+                        first, second = max(first_res[(x, y)], first),\
+                                        max(second_res[(x, y)], second)
                         queue.insert(0, (x, y))
+            first_res[start], second_res[start] = first, second
             if first and second:
-                res[start] = 1
                 res_list.append(list(start))
 
         return res_list
