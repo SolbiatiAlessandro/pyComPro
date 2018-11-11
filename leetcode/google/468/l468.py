@@ -9,6 +9,9 @@ class Solution(object):
             if token not in operators: stack.append(token)
             else: 
                 second_operand, first_operand = stack.pop(), stack.pop()
-                string = "int(float("+first_operand+")"+token+"float("+second_operand+"))"
+                if token == "/":
+                    string = "int(float("+first_operand+")"+token+"float("+second_operand+"))"
+                else:
+                    string = first_operand+token+second_operand
                 stack.append(str(eval(string)))
         return int(stack[0])
