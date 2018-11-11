@@ -6,12 +6,19 @@ class Solution(object):
         """
         stack, operators = [], ['*','+','-','/']
         for token in tokens:
-            if token not in operators: stack.append(token)
-            else: 
+            if token == "/":
                 second_operand, first_operand = stack.pop(), stack.pop()
-                if token == "/":
-                    string = "int(float("+first_operand+")"+token+"float("+second_operand+"))"
-                else:
-                    string = first_operand+token+second_operand
-                stack.append(str(eval(string)))
+                res = int(float(first_operand)/float(second_operand))
+            elif token == "+":
+                second_operand, first_operand = stack.pop(), stack.pop()
+                res = int(first_operand)+int(second_operand)
+            elif token == "-":
+                second_operand, first_operand = stack.pop(), stack.pop()
+                res = int(first_operand)-int(second_operand)
+            elif token == "*":
+                second_operand, first_operand = stack.pop(), stack.pop()
+                res = int(first_operand)*int(second_operand)
+            else:
+                res = token
+            stack.append(res)
         return int(stack[0])
