@@ -20,6 +20,6 @@ class Solution(object):
                 answer += first_answer * second_answer
             for k in xrange(1, int(ceil(truediv(len(string), 2)))):
                 answer -= abs((len(string)/k - 2))
-            answers[string] = max(answer, 0)
+            answers[string] = max(answer, 0) #TODO, instead of put simply a count of the answers in the dict, put a set of the answers so to avoid duplicates
             return max(answer, 0)
         return compute_answer(s)
