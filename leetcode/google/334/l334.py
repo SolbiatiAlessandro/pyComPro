@@ -7,19 +7,24 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
+        mapping = dict()
+        for i in xrange(26):
+            mapping[str(i+1)] = chr(ord('A')+i)
         answers = dict()
         def compute_answer(string):
-            if int(string) < 1: return 0
-            if len(string) == 1: return 1
+            if len(string) == 1: 
+                return set(mapping.get(string))
+            if len(string) == 2:
+                return set(mapping.get(string), mapping.get(string[0]), mapping.get(string[1]))
             if answers.get(string) is not None: return answers[string]
-            answer = 0
-            if int(string) < 27 and string[0] != "0": answer += 1
+            answer = set()
             for i in xrange(1, len(string)):
-                first_answer = compute_answer(string[:i])
-                second_answer = compute_answer(string[i:])
-                answer += first_answer * second_answer
-            for k in xrange(1, int(ceil(truediv(len(string), 2)))):
-                answer -= abs((len(string)/k - 2))
-            answers[string] = max(answer, 0) #TODO, instead of put simply a count of the answers in the dict, put a set of the answers so to avoid duplicates
-            return max(answer, 0)
-        return compute_answer(s)
+                answer.union(compute_answer(string[:i]))
+                answer.union(compute_answer(string[i:]))
+            answers[string] = answer
+            return answer
+        res = compute_answer(s)
+        try: res.remove(None)
+        except: pass
+        return len(res)
+
