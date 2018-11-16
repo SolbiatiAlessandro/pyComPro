@@ -23,10 +23,17 @@ class testSolution(unittest.TestCase):
         self.assertEqual(got, 1)
 
 
-    @unittest.skip("")
+    #@unittest.skip("")
     def test_letters(self):
         got = self.s.wordsTyping(["f","p","a"], 8, 7)
         self.assertEqual(got, 10)
+
+    def test_long(self):
+        from time import time
+        t1 = time()
+        got = self.s.wordsTyping(["a"],10000,10000)
+        t2 = time()
+        print t2 - t1
         
 
 if __name__ == "__main__":

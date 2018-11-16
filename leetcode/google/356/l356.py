@@ -1,23 +1,16 @@
+
 class Solution(object):
     def wordsTyping(self, sentence, rows, cols):
         #print "\n"
         end, left, res = cols - 1, rows, 0
         precomputed = [None] * (cols + 1)
-        first_seen = [None] * (cols + 1)
 
         def compute(start):
-            """returns (index at the end of the shift),
-            (how many time it repeated the sentece), (how many lines it went down)"""
-            print "call compute "+str(start)
-            if first_seen[start] is None:
-                first_seen[start] = res, left
-            else:
-                prev_res, prev_left = first_seen[start]
-                precomputed[start] = res - prev_res, left - prev_left
-
+            """computes in a DP fashion how many lines it takes 
+            to write all words in senteces, return lines and end"""
+            #print "call compute "+str(start)
             if precomputed[start] is not None:
-                return start, precomputed[start][0], precomputed[start][1]
-
+                return precomputed[start]
             height, index = 0, start
             for word in sentence:
                 if index + len(word) + 1 > cols:
@@ -26,12 +19,16 @@ class Solution(object):
                 else:
                     index += len(word) + 1
                 #print word, index
-            return index, 1, height
+            precomputed[start] = (index, height)
+            #print index, height
+            return index, height
 
+        total_len = sum([len(word) for word in sentence]) + len(sentence)
         while left >= 0:
             start = end
-            end, repeat, height = compute(start)
-            print end, repeat, height
+            res += (cols - start) / total_len
+            start += ((cols - start) / total_len) * total_len
+            res += 1
+            end, height = compute(start)
             left -= height
-            res += repeat
         return res - 1
