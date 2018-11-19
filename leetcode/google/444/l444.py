@@ -4,11 +4,10 @@ class Solution(object):
         :type grid: List[List[int]]
         :rtype: int
         """
-        answers = {}
-        def solve(x, y):
-            if x == len(grid) - 1 and y == len(grid[0]) - 1: return grid[x][y]
-            if x == len(grid) or y == len(grid[0]): return 1e9
-            if answers.get((x, y)) is None:
-                answers[(x, y)] = min(solve(x + 1, y), solve(x, y + 1)) + grid[x][y]
-            return answers[(x, y)]
-        return solve(0, 0)
+        def ok(x, y): return 0 <= x < len(grid) and 0 <= y < len(grid[0])
+        def grid_get(x, y): return grid[x][y] if ok(x, y) else 1e9
+        for diagonal in reversed(xrange((len(grid) - 1) + len(grid[0]) - 1)):
+            for y in xrange(len(grid[0])):
+                x = diagonal - y
+                if ok(x, y): grid[x][y] += min(grid_get(x + 1, y), grid_get(x, y + 1))
+        return grid[0][0]

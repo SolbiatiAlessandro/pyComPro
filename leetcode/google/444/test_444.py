@@ -16,6 +16,17 @@ class testSolution( unittest.TestCase ):
         got = self.s.minPathSum(grid)
         self.assertEqual(got, 7)
 
-
+        grid = [
+          [1,2,5],
+          [3,2,1]
+        ]
+        got = self.s.minPathSum(grid)
+        self.assertEqual(got, 6)
+        grid = [
+          [1,2,3],
+          [3,5,6]
+        ]
+        got = self.s.minPathSum(grid)
+        self.assertEqual(got, 12)
 if __name__ == "__main__":
     unittest.main()
