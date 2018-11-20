@@ -13,14 +13,12 @@ class Solution(object):
                 else: odd += num
             return max(even, odd)
         if len(nums) == 1: return nums[0]
-        curr = sum(nums[i*2] for i in xrange(len(nums)/2 - 1) if i*2 < len(nums))
+        curr = sum(nums[end] for end in map(lambda x : x * 2, xrange((len(nums) - 1)/2)))
+        start, end = 0, 2*((len(nums) - 1)/2 - 1)
         res = curr
-        for counter in xrange(len(nums)):
-            print "\n"
-            print curr
-            index = (counter * 2) % (len(nums) - 1)
-            print index, nums[index], nums[index - 2]
-            curr += -nums[index] + nums[index - 2]
-            print curr
+        for _ in xrange(len(nums)):
+            curr -= nums[start]
+            start, end = (start + 2)%len(nums), (end + 2)%len(nums)
+            curr += nums[end]
             res = max(res, curr)
         return res
