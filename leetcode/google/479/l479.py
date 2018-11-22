@@ -6,31 +6,21 @@ class ZigzagIterator(object):
         :type v1: List[int]
         :type v2: List[int]
         """
-        self.vectors = [v1, v2]
-        self.vector_indexes = []
-        if v1: self.vector_indexes.insert(0, 0)
-        if v2: self.vector_indexes.append(1)
-        self.elem_indexes = [0, 0]
-        self.index = 1
+        self.vectors = [(len(v), iter(v)) for v in (v2, v1) if v]
 
     def next(self):
         """
         :rtype: int
         """
-        self.index = (self.index + 1) % len(self.vector_indexes) 
-        index = self.vector_indexes[self.index]   # index of the vector
-        vector = self.vectors[index]              # vector
-        elem = vector[self.elem_indexes[index]]   # element from the vector
-        self.elem_indexes[index] += 1
-        if self.elem_indexes[index] == len(vector):
-            del self.vector_indexes[self.index]   # if vector ended, delete it
-        return elem
-
+        left, iterator = self.vectors.pop()
+        if left > 1: self.vectors.insert(0, (left - 1, iterator))
+        return iterator.next()
+        
     def hasNext(self):
         """
         :rtype: bool
         """
-        return bool(self.vector_indexes)
+        return bool(self.vectors)
 
 # Your ZigzagIterator object will be instantiated and called as such:
 # i, v = ZigzagIterator(v1, v2), []
