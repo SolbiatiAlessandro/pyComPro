@@ -5,8 +5,11 @@ class TicTacToe(object):
         Initialize your data structure here.
         :type n: int
         """
-        self.table = [[[0] for _ in xrange(n)] for _ in xrange(n)]
-        self.n = n
+        self.columns = [[0, 0] for _ in xrange(n)]
+        self.rows = [[0, 0] for _ in xrange(n)]
+        self.first_diagonal = [0, 0]
+        self.second_diagonal = [0, 0]
+        self.total = n
 
     def move(self, row, col, player):
         """
@@ -23,10 +26,13 @@ class TicTacToe(object):
         :type player: int
         :rtype: int
         """
-        self.table[row][col] = player
-        win = [player] * self.n
-        if [self.table[i][col] for i in xrange(self.n)] == win: return player
-        if self.table[row] == win: return player
-        if [self.table[i][i] for i in xrange(self.n)] == win: return player
-        if [self.table[self.n - 1 - i][i] for i in xrange(self.n)] == win: return player
+        player -= 1
+        self.rows[row][player] += 1
+        if max(self.rows[row]) == self.total: return player + 1
+        self.columns[col][player] += 1
+        if max(self.columns[col]) == self.total: return player + 1
+        if row == col: self.first_diagonal[player] += 1
+        if row == self.total - 1 - col: self.second_diagonal[player] += 1
+        if max(self.first_diagonal) == self.total: return player + 1
+        if max(self.second_diagonal) == self.total: return player + 1 
         return 0
