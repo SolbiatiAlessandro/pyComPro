@@ -20,8 +20,7 @@ class NumMatrix(object):
         :type val: int
         :rtype: void
         """
-        self.updates[row].insert(col, val - self.original_matrix[row][col])
-        print self.updates
+        self.updates[row].append((col, val - self.original_matrix[row][col]))
         
     def sumRegion(self, row1, col1, row2, col2):
         """

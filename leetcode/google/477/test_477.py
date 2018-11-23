@@ -21,6 +21,15 @@ class testSolution(unittest.TestCase):
         got = m.sumRegion(2, 1, 4, 3)
         self.assertEqual(got, 10)
 
+        matrix = [[1]]
+
+        m = l477.NumMatrix(matrix)
+        got = m.sumRegion(0,0,0,0)
+        self.assertEqual(got, 1)
+        m.update(0, 0, -1)
+        got = m.sumRegion(0,0,0,0)
+        self.assertEqual(got, -1)
+
 
 if __name__ == "__main__":
     unittest.main()
