@@ -7,7 +7,7 @@ class Solution(object):
         i = 0
         while i < len(data):
             cnt, number = 7, data[i]
-            while number&(1<<cnt): cnt -= 1
+            while cnt >= 0 and number&(1<<cnt): cnt -= 1
             if cnt < 3: return False
             repeat = 7 - cnt - 1
             if repeat == 0 and number & (1 << 7): return False
