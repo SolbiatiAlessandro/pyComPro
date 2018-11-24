@@ -21,6 +21,8 @@ python solution-finder.py (number of the contest, e.g. 988) (number of the probl
 
 <h2> Leetcode </h2>
 
+- Leetcode "Get well prepared for GOOGLE Interview" (completed)
+
 This are my solutions to Leetcode Google interview preparation, I am writing unit test for every solution since I follow **TDD practices** in order to increase my chances to get Accepted at first submission
 
 Here is a subset of the problems labeled **'hard'** you can find in the repo (not that hard). Had some fun solving them up to beat almost 100% other Python solutions:

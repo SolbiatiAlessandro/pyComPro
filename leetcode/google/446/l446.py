@@ -28,11 +28,11 @@ class TicTacToe(object):
         """
         player -= 1
         self.rows[row][player] += 1
-        if max(self.rows[row]) == self.total: return player + 1
         self.columns[col][player] += 1
-        if max(self.columns[col]) == self.total: return player + 1
         if row == col: self.first_diagonal[player] += 1
         if row == self.total - 1 - col: self.second_diagonal[player] += 1
+        if max(self.rows[row]) == self.total: return player + 1
+        if max(self.columns[col]) == self.total: return player + 1
         if max(self.first_diagonal) == self.total: return player + 1
         if max(self.second_diagonal) == self.total: return player + 1 
         return 0
