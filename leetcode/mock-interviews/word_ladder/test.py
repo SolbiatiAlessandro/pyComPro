@@ -1,11 +1,11 @@
 import unittest
-import word_ladder
+import word_ladderB
 
 
 class testSolution(unittest.TestCase):
     
     def setUp( self ):
-        self.s = word_ladder.Solution()
+        self.s = word_ladderB.Solution()
 
     def test_solution( self ):
         beginWord = "hit"
@@ -13,6 +13,12 @@ class testSolution(unittest.TestCase):
         wordList = ["hot","dot","dog","lot","log","cog"]
         got = self.s.ladderLength(beginWord, endWord, wordList)
         self.assertEqual(got, 5)
+
+        beginWord = "hit"
+        endWord = "cog"
+        wordList = ["hot","dot","dog","lot","log"]
+        got = self.s.ladderLength(beginWord, endWord, wordList)
+        self.assertEqual(got, 0)
 
     def test_profile(self):
         import custom
