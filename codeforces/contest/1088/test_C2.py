@@ -14,7 +14,7 @@ class test_class(unittest.TestCase):
         self.assertTrue(is_increasing(s))
         print "basicOK"
 
-    @unittest.skip("skip if you can not precompute the answer")
+    #@unittest.skip("skip if you can not precompute the answer")
     def test_regression(self):
         from random import random as rnd
         from C2 import solve
