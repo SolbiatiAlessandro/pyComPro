@@ -1,11 +1,11 @@
 import unittest
-import l173
+import l173b
 
 
 class testSolution(unittest.TestCase):
     
     def setUp( self ):
-        self.s = l173.Solution()
+        self.s = l173b.Solution()
 
     def test_solution( self ):
         nums = [2, 7, 11, 15]
