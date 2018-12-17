@@ -1,24 +1,24 @@
 import unittest
-import B
+import B1
 
 class test_class(unittest.TestCase):
     def test_basic(self):
-        s = B.solve([0,0,0])
+        s = B1.solve([0,0,0])
         self.assertEqual(s, [1,1,1])
-        s = B.solve([3,3,2,2,2])
-        self.assertEqual(s, [4,4,3,3,3])
-        s = B.solve([0,1,2,3])
+        s = B1.solve([3,3,2,2,2])
+        self.assertEqual(s, [1,1,2,2,2])
+        s = B1.solve([0,1,2,3])
         self.assertEqual(s, -1)
-        s = B.solve([0])
+        s = B1.solve([0])
         self.assertEqual(s, [1])
-        s = B.solve([5,5,5,5,5,5])
+        s = B1.solve([5,5,5,5,5,5])
         self.assertNotEqual(s, -1)
         print "basicOK"
 
     @unittest.skip("skip if you can not precompute the answer")
     def test_regression(self):
         from random import random as rnd
-        from B import solve
+        from B1 import solve
         from time import time
         SIZE = 1000 # size of the regression (iterations)
         t1 = time()
