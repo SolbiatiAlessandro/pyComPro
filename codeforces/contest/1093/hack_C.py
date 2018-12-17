@@ -11,17 +11,58 @@ def valid(b, a):
     return True
 
 
+def hack_1(b):
+    count = len(b) * 2
+    bSeq = b
+
+
+    aSeq = [0] * count
+
+    for i in range(len(bSeq)):
+        if i == 0:
+            aSeq[0] = 0
+            aSeq[-1] = bSeq[i]
+        else:
+            '''
+            for j in range(bSeq[i] + 1):
+                firstHalf = j
+                secHalf = bSeq[i] - j
+                #print("firstHalf", firstHalf)
+                #print("secHalf", secHalf)
+                if aSeq[i - 1] <= firstHalf and aSeq[-i] >= secHalf:
+                    #print("good")
+                    aSeq[i] = firstHalf
+                    aSeq[-i-1] = secHalf
+                    break
+                    '''
+            if bSeq[i] <= aSeq[-i]:
+                aSeq[i] = aSeq[i-1]
+                aSeq[-i-1] = bSeq[i] - aSeq[i-1]
+            else:
+                if bSeq[i] - aSeq[-i] < aSeq[i-1]:
+                    if bSeq[i] - aSeq[-i] < 0:
+                        aSeq[i] = bSeq[i] - aSeq[-i]
+                        aSeq[-i-1] = aSeq[-i]
+                    else:
+                        aSeq[i] = aSeq[i-1]
+                        aSeq[-i-1] = bSeq[i] - aSeq[i-1]
+                else:
+                    aSeq[i] = bSeq[i] - aSeq[-i]
+                    aSeq[-i-1] = aSeq[-i]
+
+    return aSeq
+
 
 class test_class(unittest.TestCase):
     def test_basic(self):
-        s = C.solve([5,6])
+        s = hack_1([5,6])
         print s
         self.assertTrue(valid([5,6],s))
-        s = C.solve([2,1,2])
+        s = hack_1([2,1,2])
         print s
         self.assertTrue(valid([2,1,2],s))
         b = [9, 9, 10, 9, 10, 11]
-        s = C.solve(b)
+        s = hack_1(b)
         print s
         self.assertTrue(valid(b,s))
         print "basicOK"
@@ -29,7 +70,7 @@ class test_class(unittest.TestCase):
     #@unittest.skip("skip if you can not precompute the answer")
     def test_regression(self):
         from random import random as rnd
-        from C import solve
+        solve = hack_1
         from time import time
         SIZE = 1000 # size of the regression (iterations)
         t1 = time()

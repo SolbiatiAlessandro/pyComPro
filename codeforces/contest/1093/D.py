@@ -2,7 +2,6 @@ from collections import defaultdict
 t = int(raw_input())
 def solve():
     n, m = map(int, raw_input().split())
-    if m == 0: return pow(3, n) % 998244353  
     children = defaultdict(list)
     colors = {}
     for _ in xrange(m):
@@ -30,8 +29,9 @@ def solve():
                     else:
                         if colors[child] == color:
                             return 0
-    a = pow(2, counts[0])  
-    b = pow(2, counts[1])
+
+    a = pow(2, counts[0], 998244353 )  
+    b = pow(2, len(visited) - counts[0], 998244353 )
     return (a + b) % 998244353 
 for _ in xrange(t):
     print solve()
