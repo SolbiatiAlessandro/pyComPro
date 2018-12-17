@@ -3,8 +3,12 @@ import B
 
 class test_class(unittest.TestCase):
     def test_basic(self):
-        s = B.solve(4,5)
-        self.assertEqual(s, -1)
+        s = B.solve([1, 1, 0, 1, 1, 0, 1, 0, 1, 0])
+        self.assertEqual(s, 2)
+        s = B.solve([1, 1, 0, 0, 0])
+        self.assertEqual(s, 0)
+        s = B.solve([1, 1, 1, 1])
+        self.assertEqual(s, 0)
         print "basicOK"
 
     @unittest.skip("skip if you can not precompute the answer")
