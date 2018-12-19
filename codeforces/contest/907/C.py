@@ -22,8 +22,5 @@ def solve(read):
 
 if __name__ == "__main__":
     """the solve(*args) structure is needed for testing purporses"""
-    read = []
-    for _ in iters():
-        sym, string = stdin("str")
-        read.append((sym, string))
+    read = [stdin("str") for _ in iters()]
     print solve(read)
