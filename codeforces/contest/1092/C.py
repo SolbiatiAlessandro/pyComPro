@@ -4,59 +4,26 @@ this is a standard python template for codeforces task, repo: github.com/solbiat
 stdin = lambda type_ = "int", sep = " ": list(map(eval(type_), raw_input().split(sep)))
 joint = lambda sep = " ", *args: sep.join(str(i) if type(i) != list else sep.join(map(str, i)) for i in args)
 def solve(subs):
-    #print subs
-    #import pdb;pdb.set_trace()
     subs.sort(key = lambda x: len(x[0]))
-    string1 = subs[-1][0] + subs[-2][0][-1]
-    string2 = subs[-2][0] + subs[-1][0][-1]
-    is1 = False
-    if subs[-2][0] == string1[1:]: is1 = True
-    string = string1 if is1 else string2
-    #print string
-    classes = [-1 for _ in subs]
-    l = 1
-    wrong = False
-    for i in xrange(0, len(subs), 2):
-        evaluate = subs[i][0]
-        class_0 = evaluate == string[:l] #prefix
-        if class_0:
-            classes[i] = 0
-            classes[i + 1] = 1
-        elif evaluate != string[-l:]:
-            #wront string
-            wrong = True
-            break
-        else:
-            classes[i] = 1
-            classes[i + 1] = 0
-        l += 1
-
-    if wrong:
-        is1 = not is1
-        string = string1 if is1 else string2
-        #print string
-        classes = [-1 for _ in subs]
-        l = 1
-        wrong = False
+    s1, s2 = subs[-1][0], subs[-2][0]
+    s1, s2 = s1[0] + s2, s2[0] + s1
+    def check(string):
+        res = [-1 for _ in subs]
         for i in xrange(0, len(subs), 2):
-            evaluate = subs[i][0]
-            class_0 = evaluate == string[:l] #prefix
-            if class_0:
-                classes[i] = 0
-                classes[i + 1] = 1
-            elif evaluate != string[-l:]:
-                exit('no strings!')
-            else:
-                classes[i] = 1
-                classes[i + 1] = 0
-            l += 1
-    
-    res = ['' for _ in subs]
-    for i, dd in enumerate(subs):
-        index = dd[1]
-        res[index] = 'S' if classes[i] else 'P'
+            j = i + 1
+            i_prefix = subs[i][0] == string[:len(subs[i][0])]
+            i_suffix = subs[i][0] == string[-len(subs[i][0]):] 
+            j_prefix = subs[j][0] == string[:len(subs[j][0])]
+            j_suffix = subs[j][0] == string[-len(subs[j][0]):] 
+            if i_prefix and j_suffix: res[i], res[j] = 'P', 'S'
+            elif i_suffix and j_prefix: res[i], res[j] = 'S', 'P'
+            else: return False 
+        return res
+    c1, c2= check(s1), check(s2)
+    c = c1 if c1 else c2
+    res = [-1 for _ in subs]
+    for i, index in enumerate(zip(*subs)[1]): res[index] = c[i]
     return joint('', res)
-
 
 if __name__ == "__main__":
     """the solve(*args) structure is needed for testing purporses"""
