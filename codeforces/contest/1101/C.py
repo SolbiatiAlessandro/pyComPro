@@ -5,28 +5,21 @@ stdin = lambda type_ = "int", sep = " ": list(map(eval(type_), raw_input().split
 joint = lambda sep = " ", *args: sep.join(str(i) if type(i) != list else sep.join(map(str, i)) for i in args)
 def iters(): return xrange(int(raw_input()))
 
-def solve(segms):
-    start, end = [], []
-    for i, (s,e) in enumerate(segms):
-        start.append((s,i))
-        end.append((e,i))
-    start.sort()
-    end.sort()
-    mask = 0
-    i, j =0, 0
-    res = -1
+def solve(_segms):
+    segms = []
+    for i, s in enumerate(_segms):
+        segms.append((s,i))
+    segms.sort()
+    big = segms[0][0][1]
     ans = [1] * len(segms)
-    for j in xrange(len(end)):
-        while i<len(start) and start[i][0] <= end[j][0]:
-            mask |= (1<<start[i][1])
-            i += 1
-        mask &= (~(1<<end[j][1]))
-        ans[end[j][1]] = 2
-        if mask == 0 and j != len(end)-1:
-            ans[end[j][1]] = 2
-            res = j
+    res = 0
+    for i,seg in enumerate(segms):
+        if segms[i][0][0] > big:
+            res = 1
             break
-    if res == -1:
+        ans[segms[i][1]] = 2
+        big = max(big, segms[i][0][1])
+    if not res:
         print -1
         return []
     return ans
