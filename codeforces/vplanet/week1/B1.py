@@ -8,25 +8,20 @@ joint = lambda sep = " ", *args: sep.join(str(i) if type(i) != list else sep.joi
 def iters(): return xrange(int(raw_input()))
 
 def solve(n, k, nums):
-    def side(nums):
-        prev = -1
-        res  = 0
-        height = 1
-        for num in nums:
-            try: curr = num.index('1')
-            except: curr = len(num)
-            if prev == curr: height += 1
-            else: height = 1
-            res = max(res, curr*2 + height*2)
-            prev = curr
-        return res
-    res = side(nums)
-    for i, num in enumerate(nums): nums[i] = num[::-1]
-    res = max(res, side(nums))
-    nums = [''.join(x) for x in zip(*[list(num) for num in nums])]
-    res = max(res, side(nums))
-    for i, num in enumerate(nums): nums[i] = num[::-1]
-    res = max(res, side(nums))
+    for i, num in enumerate(nums):
+        nums[i] = map(int,list(num))
+    def size(a,b,c,d):
+        for num in nums[b:d+1]:
+            if any(num[a:c+1]):
+                return -1
+        return 2*(c-a+1) + 2*(d-b+1)
+    res = 4
+    for height in xrange(n):
+        for width in xrange(k):
+            for x in xrange(k - width):
+                for y in xrange(n - height): 
+                    s = size(x, y, x+width, y+height)
+                    res = max(res, s)
     return res
 
 
