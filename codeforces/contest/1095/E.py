@@ -10,8 +10,7 @@ def solve(s):
     c  = Counter(s)
     more, less = c['('], c[')']
     char = '('
-    if abs(more - less) != 2: return 0
-    if more < less: char = ')'
+    if (more - less) != 2: return 0
     counts = []
     count = 0
     m1counts = 0
