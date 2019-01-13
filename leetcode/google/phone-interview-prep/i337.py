@@ -15,19 +15,16 @@ class Solution(object):
                 mask[begin:begin+len(word)] = [1]*len(word)
                 index = s[begin + 1:].find(word) + 1
                 if index == 0: break
-        mask = [0] + mask + [0]
 
-        added = 0
-        for i in xrange(1, len(mask)):
-            if mask[i] == 1 and mask[i-1] == 0:
-                index = added + i - 1
-                s = s[:index] + "<b>" + s[index:]
-                added += 3
-            elif mask[i] == 0 and mask[i - 1] == 1:
-                index = added + i - 1
-                s = s[:index] + "</b>" + s[index:]
-                added += 4
-        return s
+        from itertools import groupby
+        ans = []
+        for included, group in groupby(zip(mask, s), lambda x:x[0]):
+            if included: ans.append("<b>")
+            ans.append("".join(z[1] for z in group))
+            if included: ans.append("</b>")
+        return "".join(ans)
+
+
         
 
 if __name__ == "__main__":
