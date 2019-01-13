@@ -10,27 +10,21 @@ class Solution:
         :type lists: List[ListNode]
         :rtype: ListNode
         """
-        val, index = 1e9, -1
+        from Queue import PriorityQueue
+        q = PriorityQueue()
         for i, node in enumerate(lists):
-            if node and node.val < val:
-                val = node.val
-                index = i
-        if index == -1: return None
-        res = lists[index]
-        lists[index] = lists[index].next
-        curr = res
-        while True:
-            val, index = 1e9, -1
-            for i, node in enumerate(lists):
-                if node and node.val < val:
-                    val = node.val
-                    index = i
-            if index == -1: break
-            curr.next = lists[index]
-            curr = curr.next
+            if node: q.put((node.val,i))
+        nums = []
+        while not q.empty():
+            val, index = q.get()
             lists[index] = lists[index].next
-        return res
-        
-                
+            nums.append(val)
+            if lists[index]: q.put((lists[index].val, index))
             
-        
+        if not nums: return None
+        res = ListNode(nums[0])
+        curr = res
+        for num in nums[1:]:
+            curr.next = ListNode(num)
+            curr = curr.next
+        return res
