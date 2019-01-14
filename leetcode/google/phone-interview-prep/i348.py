@@ -18,15 +18,19 @@ class Solution(object):
         :type wordDict: List[str]
         :rtype: bool
         """
-        dp = populate_dp(s, wordDict)
+        dp = {}
+        wordDict = set(wordDict)
         def solve(i, j):
-            if not dp.get((i, j)): 
-                value = False
-                for k in range(i, j):
-                    if solve(i, k) and solve(k + 1, j):
-                        #print i,k,k+1,j
-                        value = True
-                        break
+            if dp.get((i, j)) is None: 
+                if s[i : j + 1] in wordDict:
+                    value = True
+                else:
+                    value = False
+                    for k in range(i, j):
+                        if solve(i, k) and solve(k + 1, j):
+                            #print i,k,k+1,j
+                            value = True
+                            break
                 dp[(i, j)] = value
             return dp[(i, j)]
         return solve(0, len(s) - 1)
@@ -72,7 +76,8 @@ def test_populate():
 if __name__ == "__main__":
     ss=Solution()
 
-    test_populate()
+    #test_populate()
+
     s = "leetcode"
     wordDict = ["leet","code"]
     assert ss.wordBreak(s, wordDict) 
@@ -89,3 +94,11 @@ if __name__ == "__main__":
     wordDict = ["c"]
     assert ss.wordBreak(s, wordDict) 
 
+    import pickle as pk
+    d = pk.load(open("tle.pkl",'rb'))
+    wordDict=d['wordDict']
+    s=d['s']
+    from time import time
+    t=time()
+    ss.wordBreak(s, wordDict) 
+    print(time()-t)
