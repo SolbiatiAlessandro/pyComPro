@@ -20,20 +20,17 @@ class Solution(object):
         """
         dp = {}
         wordDict = set(wordDict)
-        def solve(i, j):
-            if dp.get((i, j)) is None: 
-                if s[i : j + 1] in wordDict:
-                    value = True
-                else:
-                    value = False
-                    for k in range(i, j):
-                        if solve(i, k) and solve(k + 1, j):
-                            #print i,k,k+1,j
-                            value = True
-                            break
-                dp[(i, j)] = value
-            return dp[(i, j)]
-        return solve(0, len(s) - 1)
+        def solve(string):
+            if string == '': return True
+            if dp.get(string) is None:
+                value = False
+                for j, _ in enumerate(string):
+                    if string[:j + 1] in wordDict and solve(string[j + 1:]):
+                        value = True
+                        break
+                dp[string]=value
+            return dp[string]
+        return solve(s)
 
         
 def test_populate():
