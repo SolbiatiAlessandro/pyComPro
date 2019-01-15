@@ -37,3 +37,9 @@ The solutions are organized into folder named with an interger, the integer stan
 "https://leetcode.com/explore/interview/card/google/63/sorting-and-searching-4/439/" -> leetcode/google/439
 
 For every solution there will be a solution file and a test file, i.e l439.py and test_439.py
+
+
+- Leetcode "Get well prepared for MICROSOFT Interview" (in progress)
+
+This problems turned out to be way too easy, so I didn't always report them here and just code them up on leetcode.
+If you were THAT interested in checking out my solution there too you can always checkout [my leetcode profile](https://leetcode.com/alessandrosolbiati/)

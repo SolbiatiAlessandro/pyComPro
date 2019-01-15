@@ -1,6 +1,6 @@
-import solve2
+import solve3
 
-s = solve2.Solution()
+s = solve3.Solution()
 s = s.reorganizeString
 from random import random as r
 for _ in xrange(1000):

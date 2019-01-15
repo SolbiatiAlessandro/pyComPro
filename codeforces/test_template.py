@@ -1,16 +1,16 @@
 import unittest
-import template
+import A
 
 class test_class(unittest.TestCase):
     def test_basic(self):
-        s = template.solve(4,5)
+        s = A.solve(4,5)
         self.assertEqual(s, -1)
         print "basicOK"
 
     @unittest.skip("skip if you can not precompute the answer")
     def test_regression(self):
         from random import random as rnd
-        from template import solve
+        from A import solve
         from time import time
         SIZE = 1000 # size of the regression (iterations)
         t1 = time()

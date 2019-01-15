@@ -11,6 +11,7 @@ def populate_dp(s, wordDict):
     return dp
 
 
+
 class Solution(object):
     def wordBreak(self, s, wordDict):
         """
@@ -18,19 +19,15 @@ class Solution(object):
         :type wordDict: List[str]
         :rtype: bool
         """
-        dp = {}
-        wordDict = set(wordDict)
-        def solve(string):
-            if string == '': return True
-            if dp.get(string) is None:
-                value = False
-                for j, _ in enumerate(string):
-                    if string[:j + 1] in wordDict and solve(string[j + 1:]):
-                        value = True
-                        break
-                dp[string]=value
-            return dp[string]
-        return solve(s)
+        dp, wordDict = [True], set(wordDict)
+        for i in range(1, len(s) + 1):
+            print i,"\n"
+            for j in xrange(i):
+                if s[j:i] in wordDict:
+                    import pdb;pdb.set_trace()
+            dp.append(any(dp[j] and s[j:i] in wordDict for j in xrange(i)))
+        print dp
+        return dp[-1]
 
         
 def test_populate():
