@@ -14,10 +14,11 @@ def solve(k, nums, mask):
             fixed_sum += num
             nums[i] = 0
     res = 0
-    for i, num in enumerate(nums[:-1]):
-        nums[i + 1] += nums[i]
-        ans = nums[i + 1] - nums[max(0, i + 1 - k)]
-        res = max(res, ans)
+    for i, num in enumerate(nums[:-1]): nums[i + 1] += nums[i]
+    nums = [0] + nums
+    for i in xrange(1, len(nums) - k + 1):
+        ans = nums[i + k - 1] - nums[i - 1]
+        res = max(ans, res)
     return res + fixed_sum
 
 
