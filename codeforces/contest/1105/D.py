@@ -45,23 +45,21 @@ def solve(speeds, matrix, sources, verbose=False):
             x, y = elem[1][0], elem[1][1]
             if verbose: print "-low queue"
             if verbose: print (x,y)
-            if dist < speed: #expand 1
-                children = get_n(x,y)
-                if verbose: print "get_n({})".format((x,y))
-                if verbose: print ">>>"
-                if verbose: print children
-                for child in children:
-                    cx, cy = child[0], child[1]
-                    if matrix[cy][cx] == -1:
-                        matrix[cy][cx] = player
+            children = get_n(x,y)
+            if verbose: print "get_n({})".format((x,y))
+            if verbose: print ">>>"
+            if verbose: print children
+            for child in children:
+                cx, cy = child[0], child[1]
+                if matrix[cy][cx] == -1:
+                    matrix[cy][cx] = player
+                    if dist + 1 < speed:
                         low_queue.insert(0, [dist + 1, child]) 
-            else: # border
-                high_children.append((x,y))
+                    else: # border
+                        high_queue.insert(0, [player, (cx,cy)])
         if verbose: print "got high_children "
         if verbose: print high_children
 
-        for child in high_children:
-            high_queue.insert(0, [player, child])
 
     return res
     
@@ -84,6 +82,6 @@ if __name__ == "__main__":
                 matrix[col][i] = int(elem)
                 sources.append([int(elem), (i,col)])
     sources.sort()
-    res = solve(speeds, matrix, sources)
+    res = solve(speeds, matrix, sources, verbose=False)
     for x in res: print x,
     print time() - t
