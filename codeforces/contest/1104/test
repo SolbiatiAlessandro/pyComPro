@@ -1,0 +1,1 @@
+awk 'BEGIN{RS=""}{ f = "A" NR ".in"; print > f; close(f) }' A.in
