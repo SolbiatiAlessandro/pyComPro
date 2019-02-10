@@ -16,9 +16,10 @@ class WordDictionary(object):
         :rtype: void
         """
         self.counter += 1
+        l = len(word)
         for i, char in enumerate(word):
-            self.table[(i, char)] |= 1 << self.counter
-            self.table[(i, '.')] |= 1 << self.counter
+            self.table[(l, i, char)] |= 1 << self.counter
+            self.table[(l, i,  '.')] |= 1 << self.counter
         
 
     def search(self, word):
@@ -28,21 +29,10 @@ class WordDictionary(object):
         :rtype: bool
         """
         res = None
+        l = len(word)
         for i, char in enumerate(word):
             if res is None:
-                res = self.table[(i, char)]
+                res = self.table[(l, i, char)]
             else:
-                res &= self.table[(i, char)]
+                res &= self.table[(l, i, char)]
         return res != 0
-        
-
-
-# Your WordDictionary object will be instantiated and called as such:
-if __name__ == "__main__":
-    obj = WordDictionary()
-    obj.addWord('aaa')
-    assert obj.search("..a")
-    assert obj.search("a.a")
-    assert obj.search("aaa")
-    assert not obj.search("ba.")
-    assert not obj.search("aa..")
