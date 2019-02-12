@@ -5,15 +5,18 @@ stdin = lambda type_ = "int", sep = " ": list(map(eval(type_), raw_input().split
 joint = lambda sep = " ", *args: sep.join(str(i) if type(i) != list else sep.join(map(str, i)) for i in args)
 def iters(): return xrange(int(raw_input()))
 
-def solve(n, W, B, X, quantities, costs):
+def solve(n, W, B, X, quantities, costs, verbose=False):
     prev = [[W, W]]
     for i in xrange(n):
         prev = map(lambda pc: [min(pc[0]+X, pc[1]), pc[1]], prev)
+        if verbose: print prev
         prev_height, curr_height = 0, 0
         curr_subtract = [-costs[i] * level for level in xrange(quantities[i] + 1)]
         curr = [[W, W]]
 
         for _ in xrange(len(prev) - 1 + quantities[i]):
+            if verbose: print prev_height, curr_height
+
             if prev_height + 1 == len(prev):
                 curr_height += 1
             elif curr_height == quantities[i]:
@@ -27,7 +30,7 @@ def solve(n, W, B, X, quantities, costs):
                     prev_height += 1
 
             points = prev[prev_height][0] + curr_subtract[curr_height]
-            capacity = prev[prev_height][1] + B
+            capacity = prev[prev_height][1] + B * (curr_height)
             if points >= 0:
                 curr.append([points, capacity])
             else:
@@ -35,6 +38,7 @@ def solve(n, W, B, X, quantities, costs):
 
         prev = curr
 
+    if verbose: print prev
     return len(prev) - 1
             
 
