@@ -39,10 +39,10 @@ def solve(start_values, neighbs):
 
 if __name__ == "__main__":
     """the solve(*args) structure is needed for testing purporses"""
-    raw_input()
+    n = int(raw_input())
     start_values = stdin()
     from collections import defaultdict
-    neighbs = defaultdict(list)
+    neighbs = [[] for _ in xrange(n)]
     for _ in xrange(len(start_values) - 1):
         u, v, c = stdin()
         neighbs[u-1].append((v-1, c))
