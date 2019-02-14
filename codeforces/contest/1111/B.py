@@ -26,7 +26,6 @@ def hack00(n, k, m, pows):
     return ans
 
 
-
 def solve(n, k, m, pows):
     pows = sorted(pows, reverse=True) 
     to_delete = len(pows) - 1
@@ -50,6 +49,7 @@ def solve(n, k, m, pows):
             return prev_res
     return prev_res"""
 
+
 def generate():
    from random import random as rd 
    k = int(rd()*pow(10, 5)) + 1
@@ -64,7 +64,6 @@ def generate():
        print hack00(n,k,m,pows)
        print k,m,n, pows
        exit("bug")
-
 
 
 if __name__ == "__main__":
