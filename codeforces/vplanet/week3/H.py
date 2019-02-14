@@ -5,7 +5,7 @@ stdin = lambda type_ = "int", sep = " ": list(map(eval(type_), raw_input().split
 joint = lambda sep = " ", *args: sep.join(str(i) if type(i) != list else sep.join(map(str, i)) for i in args)
 def iters(): return xrange(int(raw_input()))
 
-def solve(n, W, B, X, quantities, costs, verbose=False):
+def solve(n, W, B, X, quantities, costs, verbose=True):
     prev = [[W, W]]
     for i in xrange(n):
         prev = map(lambda pc: [min(pc[0]+X, pc[1]), pc[1]], prev)
