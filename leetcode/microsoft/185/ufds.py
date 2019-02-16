@@ -28,16 +28,7 @@ class ufds(object):
         if x == 0 and xx == 0 and y == 1 and yy == 0:
             #import pdb;pdb.set_trace()
             pass
-        y, x   = self.find_set(x, y, debug=debug)
-        yy, xx = self.find_set(xx, yy, debug=debug)
-        if self.rank[y][x] > self.rank[yy][xx]:
-            self.grid[yy][xx] = self.grid[y][x]
-        else:
-            self.grid[y][x] = self.grid[yy][xx]
-        if self.rank[y][x] == self.rank[yy][xx]:
-            self.rank[yy][xx] += 1
-        if debug:
-            pp(self.grid)
+        self.grid[yy][xx] = self.grid[y][x]
 
     def find_set(self, x, y, debug=True):
         """find set given a pairs of x, y"""
@@ -47,12 +38,9 @@ class ufds(object):
 
     def count_set(self, debug=True):
         """returns how many different sets are in grid"""
-        res = set()
-        if debug: pp(self.grid)
-        for j, col in enumerate(self.grid):
-            for i, row in enumerate(col):
-                if self.grid[j][i]: res.add(self.find_set(i, j, debug=debug))
-        return len(res)
+        counter = Counter(reduce(__add__, self.grid))
+        del counter[None]
+        return len(counter)
 
 
 if __name__ == "__main__":
@@ -66,5 +54,6 @@ if __name__ == "__main__":
     for i in xrange(len(inp[0])): 
         for j  in xrange(1, len(inp)):
             if inp[j - 1][i] == "1" and inp[j][i] == "1":
-                sets.join_set(i, j, i, j - 1, debug=False)
+                sets.join_set(i, j - 1, i, j, debug=False)
+    pp(sets.grid)
     assert sets.count_set(debug=False) == 1

@@ -1,0 +1,1127 @@
+	Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+	Example 1:
+
+	Input:
+	11110
+	11010
+	11000
+	00000
+
+	Output: 1
+	Example 2:
+
+	Input:
+	11000
+	11000
+	00100
+	00011
+
+	Output: 3
+
+	------------
+	Given the head of a graph, return a deep copy (clone) of the graph. Each node in the graph contains a label (int) and a list (List[UndirectedGraphNode]) of its neighbors. There is an edge between the given node and each of the nodes in its neighbors.
+
+
+	OJ's undirected graph serialization (so you can understand error output):
+	Nodes are labeled uniquely.
+
+	We use # as a separator for each node, and , as a separator for node label and each neighbor of the node.
+	 
+
+	As an example, consider the serialized graph {0,1,2#1,2#2,2}.
+
+	The graph has a total of three nodes, and therefore contains three parts as separated by #.
+
+	First node is labeled as 0. Connect node 0 to both nodes 1 and 2.
+	Second node is labeled as 1. Connect node 1 to node 2.
+	Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.
+	 
+
+	Visually, the graph looks like the following:
+
+		   1
+		  / \
+		 /   \
+		0 --- 2
+			 / \
+			 \_/
+	Note: The information about the tree serialization is only meant so that you can understand error output if you get a wrong answer. You don't need to understand the serialization to solve the problem.
+
+
+	----------
+
+	Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.
+
+	A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+
+
+	Example:
+
+	Input: "23"
+	Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+	Note:
+
+	Although the above answer is in lexicographical order, your answer could be in any order you want.}
+
+	-----------
+	iGiven a 2D board and a list of words from the dictionary, find all words in the board.
+
+	Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+
+	Example:
+
+	Input: 
+	words = ["oath","pea","eat","rain"] and board =
+	[
+	  ['o','a','a','n'],
+	  ['e','t','a','e'],
+	  ['i','h','k','r'],
+	  ['i','f','l','v']
+	]
+
+	Output: ["eat","oath"]
+	Note:
+	You may assume that all inputs are consist of lowercase letters a-z.
+	-----------------
+	Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for '?' and '*'.
+
+	'?' Matches any single character.
+	'*' Matches any sequence of characters (including the empty sequence).
+	The matching should cover the entire input string (not partial).
+
+	Note:
+
+	s could be empty and contains only lowercase letters a-z.
+	p could be empty and contains only lowercase letters a-z, and characters like ? or *.
+	Example 1:
+
+	Input:
+	s = "aa"
+	p = "a"
+	Output: false
+	Explanation: "a" does not match the entire string "aa".
+	Example 2:
+
+	Input:
+	s = "aa"
+	p = "*"
+	Output: true
+	Explanation: '*' matches any sequence.
+	Example 3:
+
+	Input:
+	s = "cb"
+	p = "?a"
+	Output: false
+	Explanation: '?' matches 'c', but the second letter is 'a', which does not match 'b'.
+	Example 4:
+
+	Input:
+	s = "adceb"
+	p = "*a*b"
+	Output: true
+	Explanation: The first '*' matches the empty sequence, while the second '*' matches the substring "dce".
+	Example 5:
+
+	Input:
+	s = "acdcb"
+	p = "a*c?b"
+	Output: false
+	--------------
+	Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
+
+	'.' Matches any single character.
+	'*' Matches zero or more of the preceding element.
+	The matching should cover the entire input string (not partial).
+
+	Note:
+
+	s could be empty and contains only lowercase letters a-z.
+	p could be empty and contains only lowercase letters a-z, and characters like . or *.
+	Example 1:
+
+	Input:
+	s = "aa"
+	p = "a"
+	Output: false
+	Explanation: "a" does not match the entire string "aa".
+	Example 2:
+
+	Input:
+	s = "aa"
+	p = "a*"
+	Output: true
+	Explanation: '*' means zero or more of the precedeng element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
+	Example 3:
+
+	Input:
+	s = "ab"
+	p = ".*"
+	Output: true
+	Explanation: ".*" means "zero or more (*) of any character (.)".
+	Example 4:
+
+	Input:
+	s = "aab"
+	p = "c*a*b"
+	Output: true
+	Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore it matches "aab".
+	Example 5:
+
+	Input:
+	s = "mississippi"
+	p = "mis*is*p*."
+	Output: false
+	------------------
+	Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
+
+	Note:
+
+	The number of elements initialized in nums1 and nums2 are m and n respectively.
+	You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2.
+	Example:
+
+	Input:
+	nums1 = [1,2,3,0,0,0], m = 3
+	nums2 = [2,5,6],       n = 3
+
+	Output: [1,2,2,3,5,6]
+	-------------------
+	Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white and blue.
+
+	Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.
+
+	Note: You are not suppose to use the library's sort function for this problem.
+
+	Example:
+
+	Input: [2,0,2,1,1,0]
+	Output: [0,0,1,1,2,2]
+	Follow up:
+
+	A rather straight forward solution is a two-pass algorithm using counting sort.
+	First, iterate the array counting number of 0's, 1's, and 2's, then overwrite array with total number of 0's, then 1's and followed by 2's.
+	Could you come up with a one-pass algorithm using only constant space?
+	------------------------
+	Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+
+	(i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
+
+	Find the minimum element.
+
+	You may assume no duplicate exists in the array.
+
+	Example 1:
+
+	Input: [3,4,5,1,2] 
+	Output: 1
+	Example 2:
+
+	Input: [4,5,6,7,0,1,2]
+	Output: 0
+	------------------------
+	Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+
+	(i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
+
+	Find the minimum element.
+
+	The array may contain duplicates.
+
+	Example 1:
+
+	Input: [1,3,5]
+	Output: 1
+	Example 2:
+
+	Input: [2,2,2,0,1]
+	Output: 0
+	Note:
+
+	This is a follow up problem to Find Minimum in Rotated Sorted Array.
+	Would allow duplicates affect the run-time complexity? How and why?
+	--------------------
+	Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+
+	(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
+
+	You are given a target value to search. If found in the array return its index, otherwise return -1.
+
+	You may assume no duplicate exists in the array.
+
+	Your algorithm's runtime complexity must be in the order of O(log n).
+
+	Example 1:
+
+	Input: nums = [4,5,6,7,0,1,2], target = 0
+	Output: 4
+	Example 2:
+
+	Input: nums = [4,5,6,7,0,1,2], target = 3
+	Output: -1
+	-----------------------
+	Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+
+	Integers in each row are sorted from left to right.
+	The first integer of each row is greater than the last integer of the previous row.
+	Example 1:
+
+	Input:
+	matrix = [
+	  [1,   3,  5,  7],
+	  [10, 11, 16, 20],
+	  [23, 30, 34, 50]
+	]
+	target = 3
+	Output: true
+	Example 2:
+
+	Input:
+	matrix = [
+	  [1,   3,  5,  7],
+	  [10, 11, 16, 20],
+	  [23, 30, 34, 50]
+	]
+	target = 13
+	Output: false
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def searchMatrix(self, matrix, target):
+	3
+			"""
+	4
+			:type matrix: List[List[int]]
+	5
+			:type target: int
+	6
+			:rtype: bool
+	7
+			"""
+	8
+			
+	------------
+	Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+
+	Integers in each row are sorted in ascending from left to right.
+	Integers in each column are sorted in ascending from top to bottom.
+	Example:
+
+	Consider the following matrix:
+
+	[
+	  [1,   4,  7, 11, 15],
+	  [2,   5,  8, 12, 19],
+	  [3,   6,  9, 16, 22],
+	  [10, 13, 14, 17, 24],
+	  [18, 21, 23, 26, 30]
+	]
+	Given target = 5, return true.
+
+	Given target = 20, return false.
+
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def searchMatrix(self, matrix, target):
+	3
+			"""
+	4
+			:type matrix: List[List[int]]
+	5
+			:type target: int
+	6
+			:rtype: bool
+	7
+			"""
+	8
+			
+	----------------
+	There are two sorted arrays nums1 and nums2 of size m and n respectively.
+
+	Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+
+	You may assume nums1 and nums2 cannot be both empty.
+
+	Example 1:
+
+	nums1 = [1, 3]
+	nums2 = [2]
+
+	The median is 2.0
+	Example 2:
+
+	nums1 = [1, 2]
+	nums2 = [3, 4]
+
+	The median is (2 + 3)/2 = 2.5
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def findMedianSortedArrays(self, nums1, nums2):
+	3
+			"""
+	4
+			:type nums1: List[int]
+	5
+			:type nums2: List[int]
+	6
+			:rtype: float
+	7
+			"""
+	8
+			
+	----------------------
+	Say you have an array for which the ith element is the price of a given stock on day i.
+
+	If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.
+
+	Note that you cannot sell a stock before you buy one.
+
+	Example 1:
+
+	Input: [7,1,5,3,6,4]
+	Output: 5
+	Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+				 Not 7-1 = 6, as selling price needs to be larger than buying price.
+	Example 2:
+
+	Input: [7,6,4,3,1]
+	Output: 0
+	Explanation: In this case, no transaction is done, i.e. max profit = 0.
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def maxProfit(self, prices):
+	3
+			"""
+	4
+			:type prices: List[int]
+	5
+			:rtype: int
+	6
+			"""
+	7
+			
+	----------------
+	Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+
+	Example:
+
+	Input: [-2,1,-3,4,-1,2,1,-5,4],
+	Output: 6
+	Explanation: [4,-1,2,1] has the largest sum = 6.
+	Follow up:
+
+	If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
+
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def maxSubArray(self, nums):
+	3
+			"""
+	4
+			:type nums: List[int]
+	5
+			:rtype: int
+	6
+			"""
+	----------------
+	Given an unsorted array of integers, find the length of longest increasing subsequence.
+
+	Example:
+
+	Input: [10,9,2,5,3,7,101,18]
+	Output: 4 
+	Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. 
+	Note:
+
+	There may be more than one LIS combination, it is only necessary for you to return the length.
+	Your algorithm should run in O(n2) complexity.
+	Follow up: Could you improve it to O(n log n) time complexity?
+
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def lengthOfLIS(self, nums):
+	3
+			"""
+	4
+			:type nums: List[int]
+	5
+			:rtype: int
+	6
+			"""
+	------------------
+	Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+
+	Design an algorithm to serialize and deserialize a binary search tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary search tree can be serialized to a string and this string can be deserialized to the original tree structure.
+
+	The encoded string should be as compact as possible.
+
+	Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
+
+	Python	
+
+	1
+	# Definition for a binary tree node.
+	2
+	# class TreeNode(object):
+	3
+	#     def __init__(self, x):
+	4
+	#         self.val = x
+	5
+	#         self.left = None
+	6
+	#         self.right = None
+	7
+	​
+	8
+	class Codec:
+	9
+	​
+	10
+		def serialize(self, root):
+	11
+			"""Encodes a tree to a single string.
+	12
+			
+	13
+			:type root: TreeNode
+	14
+			:rtype: str
+	15
+			"""
+	16
+			
+	17
+	​
+	18
+		def deserialize(self, data):
+	19
+			"""Decodes your encoded data to tree.
+	20
+			
+	21
+			:type data: str
+	22
+			:rtype: TreeNode
+	23
+			"""
+	24
+			
+	25
+	​
+	26
+	# Your Codec object will be instantiated and called as such:
+	27
+	# codec = Codec()
+	28
+	# codec.deserialize(codec.serialize(root))
+
+	---------------
+	Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+
+	Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
+
+	Example: 
+
+	You may serialize the following tree:
+
+		1
+	   / \
+	  2   3
+		 / \
+		4   5
+
+	as "[1,2,3,null,null,4,5]"
+	Clarification: The above format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
+
+	Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
+
+	Python	
+
+	1
+	# Definition for a binary tree node.
+	2
+	# class TreeNode(object):
+	3
+	#     def __init__(self, x):
+	4
+	#         self.val = x
+	5
+	#         self.left = None
+	6
+	#         self.right = None
+	7
+	​
+	8
+	class Codec:
+	9
+	​
+	10
+		def serialize(self, root):
+	11
+			"""Encodes a tree to a single string.
+	12
+			
+	13
+			:type root: TreeNode
+	14
+			:rtype: str
+	15
+			"""
+	16
+			
+	17
+	​
+	18
+		def deserialize(self, data):
+	19
+			"""Decodes your encoded data to tree.
+	20
+			
+	21
+			:type data: str
+	22
+			:rtype: TreeNode
+	23
+			"""
+	24
+			
+	25
+	​
+	26
+	# Your Codec object will be instantiated and called as such:
+	27
+	# codec = Codec()
+	28
+	# codec.deserialize(codec.serialize(root))
+	-----------------
+	LeetCode
+	Explore
+	Problems
+	Mock 
+	Contest
+	Articles
+	Discuss
+	 Store 
+	New Playground
+	alessandrosolbiati
+	  Back to Chapter
+	  Implement Trie (Prefix Tree)
+	  Go to Discuss
+	Implement a trie with insert, search, and startsWith methods.
+
+	Example:
+
+	Trie trie = new Trie();
+
+	trie.insert("apple");
+	trie.search("apple");   // returns true
+	trie.search("app");     // returns false
+	trie.startsWith("app"); // returns true
+	trie.insert("app");   
+	trie.search("app");     // returns true
+	Note:
+
+	You may assume that all inputs are consist of lowercase letters a-z.
+	All inputs are guaranteed to be non-empty strings.
+	Python	
+
+	1
+	class Trie(object):
+	2
+	​
+	3
+		def __init__(self):
+	4
+			"""
+	5
+			Initialize your data structure here.
+	6
+			"""
+	7
+			
+	8
+	​
+	9
+		def insert(self, word):
+	10
+			"""
+	11
+			Inserts a word into the trie.
+	12
+			:type word: str
+	13
+			:rtype: void
+	14
+			"""
+	15
+			
+	16
+	​
+	17
+		def search(self, word):
+	18
+			"""
+	19
+			Returns if the word is in the trie.
+	20
+			:type word: str
+	21
+			:rtype: bool
+	22
+			"""
+	23
+			
+	24
+	​
+	25
+		def startsWith(self, prefix):
+	26
+			"""
+	27
+			Returns if there is any word in the trie that starts with the given prefix.
+	28
+			:type prefix: str
+	29
+			:rtype: bool
+	30
+			"""
+	31
+			
+	32
+	​
+	33
+	​
+	34
+	# Your Trie object will be instantiated and called as such:
+	35
+	# obj = Trie()
+	36
+	# obj.insert(word)
+	37
+	# param_2 = obj.search(word)
+	38
+	# param_3 = obj.startsWith(prefix)
+	  Custom Testcase( Contribute  )
+	-----------
+	LeetCode
+	Explore
+	Problems
+	Mock 
+	Contest
+	Articles
+	Discuss
+	 Store 
+	New Playground
+	alessandrosolbiati
+	  Back to Chapter
+	  LRU Cache
+	  Go to Discuss
+	Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and put.
+
+	get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+	put(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
+
+	Follow up:
+	Could you do both operations in O(1) time complexity?
+
+	Example:
+
+	LRUCache cache = new LRUCache( 2 /* capacity */ );
+
+	cache.put(1, 1);
+	cache.put(2, 2);
+	cache.get(1);       // returns 1
+	cache.put(3, 3);    // evicts key 2
+	cache.get(2);       // returns -1 (not found)
+	cache.put(4, 4);    // evicts key 1
+	cache.get(1);       // returns -1 (not found)
+	cache.get(3);       // returns 3
+	cache.get(4);       // returns 4
+	Python	
+
+	1
+	class LRUCache(object):
+	2
+	​
+	3
+		def __init__(self, capacity):
+	4
+			"""
+	5
+			:type capacity: int
+	6
+			"""
+	7
+			
+	8
+	​
+	9
+		def get(self, key):
+	10
+			"""
+	11
+			:type key: int
+	12
+			:rtype: int
+	13
+			"""
+	14
+			
+	15
+	​
+	16
+		def put(self, key, value):
+	17
+			"""
+	18
+			:type key: int
+	19
+			:type value: int
+	20
+			:rtype: void
+	21
+			"""
+	22
+			
+	23
+	​
+	24
+	​
+	25
+	# Your LRUCache object will be instantiated and called as such:
+	26
+	# obj = LRUCache(capacity)
+	27
+	# param_1 = obj.get(key)
+	28
+	# obj.put(key,value)
+	  Custom Testcase( Contribute  )
+	-------------------
+	Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+
+	Note:
+
+	Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+
+	Example 1:
+
+	Input: [2,2,1]
+	Output: 1
+	Example 2:
+
+	Input: [4,1,2,1,2]
+	Output: 4
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def singleNumber(self, nums):
+	3
+			"""
+	4
+			:type nums: List[int]
+	5
+			:rtype: int
+	6
+			"""
+	7
+			-----------------
+
+	LeetCode
+	Explore
+	Problems
+	Mock 
+	Contest
+	Articles
+	Discuss
+	 Store 
+	New Playground
+	alessandrosolbiati
+	  Back to Chapter
+	  Roman to Integer
+	  Go to Discuss
+	Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+
+	Symbol       Value
+	I             1
+	V             5
+	X             10
+	L             50
+	C             100
+	D             500
+	M             1000
+	For example, two is written as II in Roman numeral, just two one's added together. Twelve is written as, XII, which is simply X + II. The number twenty seven is written as XXVII, which is XX + V + II.
+
+	Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+
+	I can be placed before V (5) and X (10) to make 4 and 9. 
+	X can be placed before L (50) and C (100) to make 40 and 90. 
+	C can be placed before D (500) and M (1000) to make 400 and 900.
+	Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
+
+	Example 1:
+
+	Input: "III"
+	Output: 3
+	Example 2:
+
+	Input: "IV"
+	Output: 4
+	Example 3:
+
+	Input: "IX"
+	Output: 9
+	Example 4:
+
+	Input: "LVIII"
+	Output: 58
+	Explanation: L = 50, V= 5, III = 3.
+	Example 5:
+
+	Input: "MCMXCIV"
+	Output: 1994
+	Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def romanToInt(self, s):
+	3
+			"""
+	4
+			:type s: str
+	5
+			:rtype: int
+	6
+			"""
+	7
+			
+	  Custom Testcase( Contribute  )
+
+	-----------
+
+	LeetCode
+	Explore
+	Problems
+	Mock 
+	Contest
+	Articles
+	Discuss
+	 Store 
+	New Playground
+	alessandrosolbiati
+	  Back to Chapter
+	  Excel Sheet Column Number
+	  Go to Discuss
+	Given a column title as appear in an Excel sheet, return its corresponding column number.
+
+	For example:
+
+		A -> 1
+		B -> 2
+		C -> 3
+		...
+		Z -> 26
+		AA -> 27
+		AB -> 28 
+		...
+	Example 1:
+
+	Input: "A"
+	Output: 1
+	Example 2:
+
+	Input: "AB"
+	Output: 28
+	Example 3:
+
+	Input: "ZY"
+	Output: 701
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def titleToNumber(self, s):
+	3
+			"""
+	4
+			:type s: str
+	5
+			:rtype: int
+	6
+			"""
+	  Custom Testcase( Contribute  )
+	-------------
+
+	LeetCode
+	Explore
+	Problems
+	Mock 
+	Contest
+	Articles
+	Discuss
+	 Store 
+	New Playground
+	alessandrosolbiati
+	  Back to Chapter
+	  Find the Celebrity
+	  Go to Discuss
+	Suppose you are at a party with n people (labeled from 0 to n - 1) and among them, there may exist one celebrity. The definition of a celebrity is that all the other n - 1 people know him/her but he/she does not know any of them.
+
+	Now you want to find out who the celebrity is or verify that there is not one. The only thing you are allowed to do is to ask questions like: "Hi, A. Do you know B?" to get information of whether A knows B. You need to find out the celebrity (or verify there is not one) by asking as few questions as possible (in the asymptotic sense).
+
+	You are given a helper function bool knows(a, b) which tells you whether A knows B. Implement a function int findCelebrity(n), your function should minimize the number of calls to knows.
+
+	Note: There will be exactly one celebrity if he/she is in the party. Return the celebrity's label if there is a celebrity in the party. If there is no celebrity, return -1.
+
+	Python	
+
+	1
+	# The knows API is already defined for you.
+	2
+	# @param a, person a
+	3
+	# @param b, person b
+	4
+	# @return a boolean, whether a knows b
+	5
+	# def knows(a, b):
+	6
+	​
+	7
+	class Solution(object):
+	8
+		def findCelebrity(self, n):
+	9
+			"""
+	10
+			:type n: int
+	11
+			:rtype: int
+	12
+			"""
+	13
+			
+
+	-
+	-----------------------
+	LeetCode
+	Explore
+	Problems
+	Mock 
+	Contest
+	Articles
+	Discuss
+	 Store 
+	New Playground
+	alessandrosolbiati
+	  Back to Chapter
+	  Integer to English Words
+	  Go to Discuss
+	Convert a non-negative integer to its english words representation. Given input is guaranteed to be less than 231 - 1.
+
+	Example 1:
+
+	Input: 123
+	Output: "One Hundred Twenty Three"
+	Example 2:
+
+	Input: 12345
+	Output: "Twelve Thousand Three Hundred Forty Five"
+	Example 3:
+
+	Input: 1234567
+	Output: "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"
+	Example 4:
+
+	Input: 1234567891
+	Output: "One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One"
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def numberToWords(self, num):
+	3
+			"""
+	4
+			:type num: int
+	5
+			:rtype: str
+	6
+			"""
+	7
+			
+	  Custom Testcase( Contribute  )
+
+	--------------------
+	LeetCode
+	Explore
+	Problems
+	Mock 
+	Contest
+	Articles
+	Discuss
+	 Store 
+	New Playground
+	alessandrosolbiati
+	  Back to Chapter
+	  The Skyline Problem
+	  Go to Discuss
+	A city's skyline is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Now suppose you are given the locations and height of all the buildings as shown on a cityscape photo (Figure A), write a program to output the skyline formed by these buildings collectively (Figure B).
+
+	Buildings  Skyline Contour
+	The geometric information of each building is represented by a triplet of integers [Li, Ri, Hi], where Li and Ri are the x coordinates of the left and right edge of the ith building, respectively, and Hi is its height. It is guaranteed that 0 ≤ Li, Ri ≤ INT_MAX, 0 < Hi ≤ INT_MAX, and Ri - Li > 0. You may assume all buildings are perfect rectangles grounded on an absolutely flat surface at height 0.
+
+	For instance, the dimensions of all buildings in Figure A are recorded as: [ [2 9 10], [3 7 15], [5 12 12], [15 20 10], [19 24 8] ] .
+
+	The output is a list of "key points" (red dots in Figure B) in the format of [ [x1,y1], [x2, y2], [x3, y3], ... ] that uniquely defines a skyline. A key point is the left endpoint of a horizontal line segment. Note that the last key point, where the rightmost building ends, is merely used to mark the termination of the skyline, and always has zero height. Also, the ground in between any two adjacent buildings should be considered part of the skyline contour.
+
+	For instance, the skyline in Figure B should be represented as:[ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0] ].
+
+	Notes:
+
+	The number of buildings in any input list is guaranteed to be in the range [0, 10000].
+	The input list is already sorted in ascending order by the left x position Li.
+	The output list must be sorted by the x position.
+	There must be no consecutive horizontal lines of equal height in the output skyline. For instance, [...[2 3], [4 5], [7 5], [11 5], [12 7]...] is not acceptable; the three lines of height 5 should be merged into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
+	Python	
+
+	1
+	class Solution(object):
+	2
+		def getSkyline(self, buildings):
+	3
+			"""
+	4
+			:type buildings: List[List[int]]
+	5
+			:rtype: List[List[int]]
+	6
+			"""
+	  Custom Testcase( Contribute  )
+	---------------------
+
