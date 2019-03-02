@@ -18,6 +18,19 @@ ll N, dp[MAXN], out;
 vector< pair<ll, ll> > adj[MAXN];
 
 void dfs(ll node, ll parent){
+	ll top1 = 0, top2 = 0;
+	for(auto i: adj[node]) if(i.first != parent){
+		dfs(i.first, node);
+		ll value = W[i.first] - i.second;
+		if( value > top2 ){
+			top2 = value;
+			if( top2 > top1 ){
+				swap(top1, top2);
+			}
+		}
+	}
+	out = max(out, top1 + top2 + W[node]);
+	W[node] += top1;
 }
 
 int main () {
