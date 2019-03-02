@@ -27,9 +27,6 @@ res = [0]
 def solve(n):
     memo = {}
     def recurr(i, j):
-        if i == 1 and j == 2:
-            #import pdb;pdb.set_trace()
-            pass
         if i == j: return n[i]
         val = memo.get((i, j))
         if val is not None: return val
@@ -38,6 +35,8 @@ def solve(n):
             lo = recurr(i, mid) == recurr(mid + 1, j)
             res[0] += lo
             lres = recurr(i, mid) ^ recurr(mid + 1, j)
+            recurr(i, j-1)
+            recurr(i+1, j)
         else:
             mid = (j + i - 1)/2
             lres = recurr(i, mid) ^ recurr(mid + 1, j)
