@@ -8,7 +8,7 @@ I will focus on **quality over quantity** trying to find out nice 'tips and tric
 
 The motivation of the repo is getting my Python fresh and clean since I will be starting working as Python developer pretty soon. 
 
-I am using a KANBAN inside Projects to **keep track of upsolving**, where upsolved problem are GitHub Issues.
+I am using a kan-ban (inside the repo Projects)[https://github.com/SolbiatiAlessandro/pyComPro/projects/1] to **keep track of upsolving**, where upsolved problem are GitHub Issues.
 
 <h2>solution-finder.py</h2>
 
