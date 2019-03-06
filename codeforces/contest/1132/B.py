@@ -8,22 +8,19 @@ joint = lambda sep = " ", *args: sep.join(str(i) if type(i) != list else sep.joi
 def iters(): return xrange(int(raw_input()))
 
 
-def solve(nums):
-    snums = set(nums)
-    nums.sort()
-    res = 0
-    for s in xrange(nums[0] + nums[1], nums[-1] + nums[-2] + 1):
-        lres = 0
-        for num in nums[:len(nums)/2 - 1]:
-            if (s - num) in snums: lres += 1
-        res = max(lres, res)
+def solve(p,q):
+    p.sort()
+    s = sum(p)
+    res = ""
+    for m in q:
+        res += str(s - p[-m])+"\n"
     return res
-
-
-    
 
 if __name__ == "__main__":
     """the solve(*args) structure is needed for testing purporses"""
     raw_input()
-    nums = stdin()
-    print solve(nums)
+    p = stdin()
+    raw_input()
+    q = stdin()
+    import os
+    os.write(1, solve(p, q))
