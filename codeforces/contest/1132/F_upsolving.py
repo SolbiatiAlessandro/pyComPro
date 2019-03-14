@@ -14,10 +14,9 @@ def solve(s):
     def dp(l, r):
         if l > r: return 0
         if memo[l][r] != -1: return memo[l][r]
-        res = 1 + dp(l + 1, r)
-        for i in xrange(l + 1, r + 1):
-            if s[i] == s[l]:
-                res = min(res, dp(l + 1, i - 1) + dp(i, r))
+        res = min([1 + dp(l + 1, r)] +                    \
+                [dp(l + 1, i - 1) + dp(i, r) for          \
+                i in xrange(l + 1, r + 1) if s[i] == s[l]])
         memo[l][r] = res
         return res
     return dp(0, n - 1)
